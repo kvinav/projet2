@@ -1,29 +1,3 @@
-<?php
-ini_set('display_errors', 'on');
-error_reporting(E_ALL);
-
-include_once('managerbillets.php');
-include_once('billets.php');
-
-
-$billets = new Billets;
-
-try
-{
-$bdd = new PDO('mysql:host=localhost;dbname=projet2', 'root', '');
-}
-catch(Exception $e)
-{
-        die('Erreur : '.$e->getMessage());
-}
-
-$manager = new managerbillets($bdd);
-    
-$manager->add($billets);
-$billets = $manager->getList('');
-
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,7 +26,7 @@ $billets = $manager->getList('');
   <body>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
         <a class="navbar-brand" href="index.html">Blog</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -77,9 +51,8 @@ $billets = $manager->getList('');
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
-            <div class="site-heading"><br><br>
-              <h1>Un billet simple pour l'Alaska</h1>
-              <span class="subheading">de Jean Forteroche</span>
+            <div class="page-heading"><br><br><br>
+              <h1>Qui suis-je ?</h1><br><br>
             </div>
           </div>
         </div>
@@ -90,28 +63,9 @@ $billets = $manager->getList('');
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="post-preview">
-          
-
-              <?php foreach ($billets as $billet) { ?>
-        
-                
-              <h2 class="post-title">
-                <?php echo $billet->getTitre(''); ?>
-              </h2>
-              <p class="post-subtitle">
-                <?php echo $billet->getBillet(''); ?>
-              </p>
-            
-            <p class="post-meta">Posté par
-              <?php echo $billet->getAuteur(''); ?>
-              le <?php echo $billet->getDatebillet(''); ?></p>
-          </div>
-          <?php } ?>
-                   <!-- Pager -->
-          <div class="clearfix">
-            <a class="btn btn-secondary float-right" href="#">Anciens billets &rarr;</a>
-          </div>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe nostrum ullam eveniet pariatur voluptates odit, fuga atque ea nobis sit soluta odio, adipisci quas excepturi maxime quae totam ducimus consectetur?</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius praesentium recusandae illo eaque architecto error, repellendus iusto reprehenderit, doloribus, minus sunt. Numquam at quae voluptatum in officia voluptas voluptatibus, minus!</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum molestiae debitis nobis, quod sapiente qui voluptatum, placeat magni repudiandae accusantium fugit quas labore non rerum possimus, corrupti enim modi! Et.</p>
         </div>
       </div>
     </div>

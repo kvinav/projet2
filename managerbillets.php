@@ -24,7 +24,7 @@ class ManagerBillets
 
 	public function get($id)
     {
-   		$req = $this->bdd->query('SELECT auteur, titre, billet, datebillet FROM billets ORDER BY ID DESC');
+   		$req = $this->bdd->query('SELECT auteur, titre, billet, datebillet FROM billets ORDER BY id DESC');
    		$donnees = $req->fetch(PDO::FETCH_ASSOC);
 
    		 //Execution requète
@@ -35,7 +35,7 @@ class ManagerBillets
   	{
      	$billets = [];
 
-    	$req = $this->bdd->query('SELECT auteur, titre, billet, datebillet FROM billets ORDER BY ID DESC');
+    	$req = $this->bdd->query('SELECT auteur, titre, billet, datebillet FROM billets ORDER BY id DESC');
 
     		while ($donnees = $req->fetch(PDO::FETCH_ASSOC))
     		{
