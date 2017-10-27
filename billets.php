@@ -23,10 +23,11 @@ class Billets
 		foreach ($donnees as $key => $value)
 		{
 			$method = 'set'.ucfirst($key);
-		}
-		if (method_exists($this, $method)) 
-		{
+		
+			if (method_exists($this, $method)) 
+			{
 			$this->$method($value);
+			}
 		}
 	}
 	//récupération id
@@ -44,7 +45,7 @@ class Billets
 			}
 	}
 
-	public function getId($id)
+	public function getId()
 	{
 		return $this->id;
 
@@ -62,7 +63,7 @@ class Billets
 
 	}
 
-	public function getAuteur($auteur)
+	public function getAuteur()
 	{
 		return $this->auteur;
 
@@ -79,7 +80,7 @@ class Billets
 
 	}
 
-	public function getTitre($titre)
+	public function getTitre()
 	{
 		return $this->titre;
 
@@ -95,7 +96,7 @@ class Billets
 		}
 	}
 
-	public function getBillet($billet)
+	public function getBillet()
 	{
 		return $this->billet;
 
@@ -108,7 +109,7 @@ class Billets
 		
 	}
 
-	public function getDatebillet($datebillet)
+	public function getDatebillet()
 	{
 		return $this->datebillet;
 

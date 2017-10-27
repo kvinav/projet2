@@ -14,18 +14,17 @@ class ManagerBillets
 	public function add(Billets $billets)
 	{
 
-		$req = $this->bdd->prepare('INSERT INTO billets (auteur, titre, billet, datebillet) VALUES(:auteur, :titre, :billet, NOW())');
+		$req = $this->bdd->prepare('INSERT INTO billets (auteur, titre, billet, datebillet) VALUES(\'Jean Forteroche\', :titre, :billet, NOW())');
 
-		$req->bindValue(':auteur', $billets->getAuteur(''), PDO::PARAM_INT);
-		$req->bindValue(':titre', $billets->getTitre(''), PDO::PARAM_INT);
-		$req->bindValue(':billet', $billets->getBillet(''), PDO::PARAM_INT);
+		$req->bindValue(':titre', $_POST['titre'], PDO::PARAM_INT);
+		$req->bindValue(':billet', $_POST['billet'], PDO::PARAM_INT);
 		$req->execute();
 
 	}
 
 	public function get($id)
     {
-   		$req = $this->bdd->query('SELECT auteur, titre, billet, datebillet FROM billets ORDER BY id DESC');
+   		$req = $this->bdd->query('SELECT id, auteur, titre, billet, datebillet FROM billets ORDER BY id DESC');
    		$donnees = $req->fetch(PDO::FETCH_ASSOC);
 
    		 //Execution requète
@@ -37,7 +36,7 @@ class ManagerBillets
   	{
      	$billets = [];
 
-    	$req = $this->bdd->query('SELECT auteur, titre, billet, datebillet FROM billets ORDER BY id DESC');
+    	$req = $this->bdd->query('SELECT id, auteur, titre, billet, datebillet FROM billets ORDER BY id DESC');
 
     		while ($donnees = $req->fetch(PDO::FETCH_ASSOC))
     		{
@@ -47,7 +46,7 @@ class ManagerBillets
     	return $billets;
   	}
 
-  	//Update billet
+   	//Update billet
 
   	 public function update(Billets $billets)
     {
