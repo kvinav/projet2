@@ -33,7 +33,7 @@
               </div>
               <div>
 
-                <i class="fa fa-paper-plane" aria-hidden="true"><input type="submit" class="btn btn-default submit" value="Envoyer"></i> 
+               <input type="submit" class="btn btn-default submit" value="Envoyer"> 
               </div>
               
           </div>

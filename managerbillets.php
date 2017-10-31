@@ -16,8 +16,8 @@ class ManagerBillets
 
 		$req = $this->bdd->prepare('INSERT INTO billets (auteur, titre, billet, datebillet) VALUES(\'Jean Forteroche\', :titre, :billet, NOW())');
 
-		$req->bindValue(':titre', $_POST['titre'], PDO::PARAM_INT);
-		$req->bindValue(':billet', $_POST['billet'], PDO::PARAM_INT);
+		$req->bindValue(':titre', $billets->getTitre(), PDO::PARAM_INT);
+		$req->bindValue(':billet', $billets->getBillet(), PDO::PARAM_INT);
 		$req->execute();
 
 	}
@@ -46,14 +46,26 @@ class ManagerBillets
     	return $billets;
   	}
 
+      // récupération billet unique
+    public function getUnique()
+    {
+       
+      $req = $this->bdd->prepare('SELECT * FROM billets WHERE id = :id');
+      $req->bindValue(':id', $_GET['id']);
+      $req->execute();
+      $req->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Billets');
+      $billetunique = $req->fetch();
+      return $billetunique;
+
+    }
    	//Update billet
 
   	 public function update(Billets $billets)
     {
         $req = $this->bdd->prepare('UPDATE billets SET titre = :titre, billet = :billet WHERE id = :id');
   
-        $req->bindValue(':titre', $billets->getTitre(''), PDO::PARAM_INT);
-        $req->bindValue(':billet', $billets->getBillet(''), PDO::PARAM_INT);
+        $req->bindValue(':titre', $billet->getTitre(''), PDO::PARAM_INT);
+        $req->bindValue(':billet', $billet->getBillet(''), PDO::PARAM_INT);
   
         $req->execute();
     }

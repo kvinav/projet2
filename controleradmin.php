@@ -2,8 +2,8 @@
 ini_set('display_errors', 'on');
 error_reporting(E_ALL);
 
-include_once('admin.php');
-include_once('manageradmin.php');
+require 'autoloader.php';
+Autoloader::register();
 
 
 $bdd = new PDO('mysql:host=localhost;dbname=projet2;charset=utf8', 'root', '');
