@@ -1,4 +1,5 @@
 <?php
+session_start();
 ini_set('display_errors', 'on');
 error_reporting(E_ALL);
 
@@ -20,6 +21,8 @@ $firstadmin = $manageradmin->getUnique();
 
 if (isset($_POST['user']) && isset($_POST['password']) && $_POST['user'] == $firstadmin->getUser()  && $_POST['password'] == $firstadmin->getPassword())
 {
+	$_SESSION['user'] = $_POST['user'];
+	$_SESSION['password'] = $_POST['password'];
 	include_once('administration.php');
 }
 elseif (isset($_POST['user']) && isset($_POST['password']) && $_POST['user'] !== $firstadmin->getUser() || $_POST['password'] !== $firstadmin->getPassword()) 

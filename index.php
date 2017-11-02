@@ -23,7 +23,7 @@
 
             <!-- Génère la liste des billets -->
         
-             <?php foreach ($billetarray as $billet) { ?>
+             <?php foreach ($billets as $billet) { ?>
           <div class="post-preview">
 
             <!-- Renvoie vers un post en fonction de l'id  -->
@@ -44,9 +44,7 @@
              <?php } ?>
 
                    <!-- Pager -->
-          <div class="clearfix">
-            <a class="btn btn-secondary float-right" href="ajoutbillet.php">Ajouter un billet &rarr;</a>
-          </div>
+         
         </div>
       </div>
     </div>

@@ -21,17 +21,43 @@ class ManagerCommentaires
 
 	public function get($id)
 	{
-		$req = $this->bdd->query('SELECT pseudo, commentaire, datecommentaire FROM commentaires ORDER BY id');
+		$req = $this->bdd->query('SELECT pseudo, commentaire, datecommentaire, signaler FROM commentaires ORDER BY id');
 		$donnees = $req->fetch(PDO::FETCH_ASSOC);
 
 		$req->execute();
+	}
+
+	public function signaler(Commentaires $commentaire)
+	{
+		$req = $this->bdd->prepare('UPDATE commentaires SET signaler = :signaler WHERE id = :id');
+		$req->bindvalue(':signaler', $commentaire->getSignaler() + 1, PDO::PARAM_INT);
+		$req->bindValue(':id', $commentaire->getId(), PDO::PARAM_INT);
+
+		$req->execute();
+
+	}
+
+	public function getListadmin()
+	{
+		$commentairesadmin = [];
+
+		$req = $this->bdd->prepare('SELECT id, pseudo, commentaire, datecommentaire, signaler FROM commentaires WHERE id_billet = :id_billet ORDER BY signaler DESC, id DESC');
+		$req->bindValue(':id_billet', $_GET['id']);
+     	$req->execute();
+
+		while ($donnees = $req->fetch(PDO::FETCH_ASSOC))
+		{
+			$commentairesadmin[] = new Commentaires($donnees);
+		}
+
+		return $commentairesadmin;
 	}
 
 	public function getList()
 	{
 		$commentaires = [];
 
-		$req = $this->bdd->prepare('SELECT pseudo, commentaire, datecommentaire FROM commentaires WHERE id_billet = :id_billet ORDER BY id');
+		$req = $this->bdd->prepare('SELECT id, pseudo, commentaire, datecommentaire, signaler FROM commentaires WHERE id_billet = :id_billet ORDER BY id');
 		$req->bindValue(':id_billet', $_GET['id']);
      	$req->execute();
 
@@ -42,6 +68,18 @@ class ManagerCommentaires
 
 		return $commentaires;
 	}
+
+	public function getUnique()
+    {
+       
+      $req = $this->bdd->prepare('SELECT * FROM commentaires WHERE id = :id');
+      $req->bindValue(':id', $_GET['idcom']);
+      $req->execute();
+      $req->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Commentaires');
+      $commentaireunique = $req->fetch();
+      return $commentaireunique;
+
+    }
 
 	public function update(Commentaires $commentaire)
 	{

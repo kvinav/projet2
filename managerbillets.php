@@ -60,19 +60,19 @@ class ManagerBillets
     }
    	//Update billet
 
-  	 public function update(Billets $billets)
+  	 public function update(Billets $billet)
     {
         $req = $this->bdd->prepare('UPDATE billets SET titre = :titre, billet = :billet WHERE id = :id');
   
-        $req->bindValue(':titre', $billet->getTitre(''), PDO::PARAM_INT);
-        $req->bindValue(':billet', $billet->getBillet(''), PDO::PARAM_INT);
+        $req->bindValue(':titre', $billet->getTitre(), PDO::PARAM_INT);
+        $req->bindValue(':billet', $billet->getBillet(), PDO::PARAM_INT);
   
         $req->execute();
     }
 
     //Suppression d'un billet
 
-  	 public function delete(Billets $billets)
+  	 public function delete(Billets $billet)
     {
         $this->bdd->exec('DELETE FROM billets WHERE id = '.$billet->getId());
     }

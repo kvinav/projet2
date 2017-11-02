@@ -28,12 +28,13 @@
       
         <h3>Commentaires</h3><br>
         <?php foreach ($listcommentaire as $commentaire) { ?>
-          
-        <ul class="lis-group">
+        <ol class="lis-group">
           <li class="list-group-item"><p><strong><?php echo $commentaire->getPseudo(); ?></strong> - <em>le <?php echo $commentaire->getDatecommentaire(); ?></em></p>
 
-              <p><?php echo $commentaire->getCommentaire(); ?></p></li>
-        </ul>
+              <p><?php echo $commentaire->getCommentaire(); ?></p>
+              <p> <a href="controlerpost.php?id=<?php echo $billetunique->getId(); ?>&idcom=<?php echo $commentaire->getId(); ?>&signaler"><input type="submit" class="btn btn-danger submit" value="SIGNALER"></a></p>
+                <p><?php if ($commentaire->getSignaler() >= 1 ) { echo '<div class="list-group-item list-group-item-danger"><em>Ce commentaire a été signalé</em></div>'; } ?></p> </li>
+        </ol>
         <?php } ?>
 
            <div class="container">

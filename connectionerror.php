@@ -9,7 +9,7 @@
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
             <div class="site-heading"><br><br><br><br>
-              <h1>Connection</h1>
+              <h1>Connexion</h1>
             </div>
           </div>
         </div>

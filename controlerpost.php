@@ -18,6 +18,22 @@ $commentaireobj = new Commentaires();
 $managercommentaire = new ManagerCommentaires($bdd);
 
 
+// Si on a un id pour le commentaire et signaler,
+//on récupère le commentaire et on lui ajoute +1 à signaler;
+
+if (isset($_GET['idcom']) && isset($_GET['signaler']))
+{	
+
+	$commentaireunique = $managercommentaire->getUnique($_GET['idcom']);
+
+	$managercommentaire->signaler($commentaireunique);
+
+
+
+	$billetunique = $manager->getUnique($_GET['id']);
+	$listcommentaire = $managercommentaire->getList();
+
+}
 // Si on rentre formulaire : ajouter commentaire et afficher liste commentaires
 if (isset($_POST['pseudo']) && isset($_POST['commentaire']))
 {
