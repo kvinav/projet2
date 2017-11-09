@@ -1,0 +1,3 @@
+<?php
+ini_set('display_errors', 'off');
+error_reporting(E_ALL);
