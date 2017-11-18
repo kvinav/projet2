@@ -21,7 +21,7 @@ class ManagerCommentaires
 
 	public function get($id)
 	{
-		$req = $this->bdd->query('SELECT pseudo, commentaire, signaler, DATE_FORMAT(datecommentaire, \'%d/%m/%Y à %Hh%imin\') AS datecommentaire FROM commentaires ORDER BY id');
+		$req = $this->bdd->query('SELECT pseudo, commentaire, signaler, datecommentaire FROM commentaires ORDER BY id');
 		$donnees = $req->fetch(PDO::FETCH_ASSOC);
 
 		$req->execute();
@@ -41,7 +41,7 @@ class ManagerCommentaires
 	{
 		$commentairesadmin = [];
 
-		$req = $this->bdd->prepare('SELECT id, pseudo, commentaire, signaler, DATE_FORMAT(datecommentaire, \'%d/%m/%Y à %Hh%imin\') AS datecommentaire FROM commentaires WHERE id_billet = :id_billet ORDER BY signaler DESC, id DESC');
+		$req = $this->bdd->prepare('SELECT id, pseudo, commentaire, signaler, datecommentaire FROM commentaires WHERE id_billet = :id_billet ORDER BY signaler DESC, id DESC');
 			$req->bindValue(':id_billet', $_GET['id']);
      	$req->execute();
 
@@ -57,7 +57,7 @@ class ManagerCommentaires
 	{
 		$commentaires = [];
 
-		$req = $this->bdd->prepare('SELECT id, pseudo, commentaire, signaler, DATE_FORMAT(datecommentaire, \'%d/%m/%Y à %Hh%imin\') AS datecommentaire FROM commentaires WHERE id_billet = :id_billet ORDER BY id');
+		$req = $this->bdd->prepare('SELECT id, pseudo, commentaire, signaler, datecommentaire FROM commentaires WHERE id_billet = :id_billet ORDER BY id');
 		$req->bindValue(':id_billet', $_GET['id']);
      	$req->execute();
 
@@ -73,7 +73,7 @@ class ManagerCommentaires
 	{
 		$commentairestotal = [];
 
-		$req = $this->bdd->prepare('SELECT id, pseudo, commentaire, signaler, id_billet, DATE_FORMAT(datecommentaire, \'%d/%m/%Y à %Hh%imin\') AS datecommentaire FROM commentaires ORDER BY signaler DESC, id DESC');
+		$req = $this->bdd->prepare('SELECT id, pseudo, commentaire, signaler, id_billet, datecommentaire FROM commentaires ORDER BY signaler DESC, id DESC');
      	$req->execute();
 
 		while ($donnees = $req->fetch(PDO::FETCH_ASSOC))
@@ -86,7 +86,7 @@ class ManagerCommentaires
 	public function getUnique()
     {
        
-      $req = $this->bdd->prepare('SELECT id, pseudo, commentaire, signaler, id_billet, DATE_FORMAT(datecommentaire, \'%d/%m/%Y à %Hh%imin\') AS datecommentaire FROM commentaires WHERE id = :id');
+      $req = $this->bdd->prepare('SELECT id, pseudo, commentaire, signaler, id_billet, datecommentaire FROM commentaires WHERE id = :id');
       $req->bindValue(':id', $_GET['id']);
       $req->execute();
       $req->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Commentaires');

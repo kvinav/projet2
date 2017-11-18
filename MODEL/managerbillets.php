@@ -24,7 +24,7 @@ class ManagerBillets
 
 	public function get($id)
     {
-   		$req = $this->bdd->query('SELECT id, auteur, titre, billet, datebillet FROM billets ORDER BY id DESC');
+   		$req = $this->bdd->query('SELECT id, auteur, titre, billet, DATE_FORMAT(datebillet, \'%d/%m/%Y %Hh%imin\') AS datebillet FROM billets ORDER BY id DESC');
    		$donnees = $req->fetch(PDO::FETCH_ASSOC);
 
    		 //Execution requète
@@ -36,7 +36,7 @@ class ManagerBillets
   	{
      	$billets = [];
 
-    	$req = $this->bdd->query('SELECT id, auteur, titre, billet, datebillet FROM billets ORDER BY id DESC');
+    	$req = $this->bdd->query('SELECT id, auteur, titre, billet, DATE_FORMAT(datebillet, \'%d/%m/%Y à %Hh%imin\') AS datebillet, DATE_FORMAT(datemodif, \'%d/%m/%Y à %Hh%imin\') AS datemodif FROM billets ORDER BY id DESC');
 
     		while ($donnees = $req->fetch(PDO::FETCH_ASSOC))
     		{
@@ -50,7 +50,7 @@ class ManagerBillets
     public function getUnique()
     {
        
-      $req = $this->bdd->prepare('SELECT * FROM billets WHERE id = :id');
+      $req = $this->bdd->prepare('SELECT id, auteur, titre, billet, DATE_FORMAT(datebillet, \'%d/%m/%Y à %Hh%imin\') AS datebillet, DATE_FORMAT(datemodif, \'%d/%m/%Y à %Hh%imin\') AS datemodif FROM billets WHERE id = :id');
       $req->bindValue(':id', $_GET['id']);
       $req->execute();
       $req->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Billets');
@@ -62,7 +62,7 @@ class ManagerBillets
 
   	 public function update(Billets $billets)
     {
-        $req = $this->bdd->prepare('UPDATE billets SET titre = :titre, billet = :billet WHERE id = '.$billets->getId());
+        $req = $this->bdd->prepare('UPDATE billets SET titre = :titre, billet = :billet, datemodif = NOW() WHERE id = '.$billets->getId());
   
         $req->bindValue(':titre', $billets->getTitre(), PDO::PARAM_STR);
         $req->bindValue(':billet', $billets->getBillet(), PDO::PARAM_STR);

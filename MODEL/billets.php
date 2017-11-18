@@ -8,6 +8,7 @@ class Billets
 	private $titre;
 	private $billet;
 	private $datebillet;
+	private $datemodif;
 
 	public function __construct($value = [])
 	{
@@ -115,4 +116,16 @@ class Billets
 
 	}
 
+    public function setDatemodif($datemodif)
+	{
+		
+		$this->datemodif = $datemodif;
+		
+	}
+
+	public function getDatemodif()
+	{
+		return $this->datemodif;
+
+	}
 }
