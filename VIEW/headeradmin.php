@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Administration</title>
+ 
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -125,25 +126,22 @@
       </div>
       
       <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu" data-widget="tree">
+      <ul class="sidebar-menu">
         <li class="header">Menu</li>
-        <li class="active treeview">
-          <a href="../CONTROLER/controleradmin.php">
+        <li>
+          <a href="../CONTROLER/controlerconnexion.php?connected=1">
             <i class="fa fa-dashboard"></i> <span>Tableau de bord</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
           </a>
         </li>
-        <li class="treeview">
+        <li>
           <a href="../CONTROLER/controleradminliste.php">
             <i class="fa fa-list"></i>
             <span>Mes billets</span>
           </a>
         </li>
-        <li class="treeview">
+        <li>
           <a href="../CONTROLER/controlercomliste.php">
-            <i class="fa fa-list"></i>
+            <i class="fa fa-comments"></i>
             <span>Tous les commentaires</span>
           </a>
         </li>
@@ -152,13 +150,13 @@
             <i class="fa fa-pencil"></i> <span>Créer un billet</span>
           </a>
         </li>
-        <li class="treeview">
-          <a href="../CONTROLER/index.php">
+        <li>
+          <a href="../CONTROLER/index.php" onclick="window.open(this.href); return false;">
             <i class="fa fa-home"></i>
             <span>Mon site</span>
           </a>
         </li>
-        <li class="treeview">
+        <li>
           <a href="../CONTROLER/controlerdeconnexion.php">
             <i class="fa fa-sign-out"></i>
             <span>Déconnexion</span>

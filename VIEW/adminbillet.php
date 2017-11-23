@@ -17,9 +17,16 @@
           <!-- small box -->
             <p> <?php echo $billetunique->getBillet($billet); ?> </p>
           <p> Publié par <em><?php echo $billetunique->getAuteur($billet); ?> </em><p>
-            <p>Le <em> <?php echo $billetunique->getDatebillet($billet); ?></em></p><br>
+            <?php if ($billetunique->getDatebillet() == $billetunique->getDatemodif()) { 
+                   
+                  ?> le  <?php echo $billetunique->getDatebillet(); ?> <br><br> <?php
+              }
+              
+              else {
+                  ?> le  <?php echo $billetunique->getDatebillet(); ?> <br> Mise-à-jour le <?php echo $billetunique->getDatemodif(); ?> </p>
+             <?php } ?>
 
-             <a href="../CONTROLER/controlermodifbillet.php?id=<?php echo $billetunique->getId(); ?>&modifier"><input type="submit" class="btn btn-primary submit" value="Modifier"></a>  <a href="../CONTROLER/controleradminbillet.php?id=<?php echo $billetunique->getId(); ?>&supprimerbill"><input type="submit" class="btn btn-danger submit" value="Supprimer"></a> <br><br><br>
+             <a href="../CONTROLER/controlermodifbillet.php?id=<?php echo $billetunique->getId(); ?>&modifier"><input type="submit" class="btn btn-primary submit" value="Modifier"></a>  <a href="../CONTROLER/controleradminbillet.php?id=<?php echo $billetunique->getId(); ?>&supprimerbill"><input type="submit" class="btn btn-danger submit" value="Supprimer" OnClick="return confirm('Voulez-vous vraiment supprimer ?');"></a> <br><br><br>
 
         <?php foreach ($listcommentaire as $commentaire) { ?>
         <ul class="lis-group">
@@ -28,7 +35,8 @@
               <p><?php echo $commentaire->getCommentaire();  ?></p>
               <p> <?php if ($commentaire->getSignaler() >= 1) { echo '<div class="list-group-item list-group-item-danger"><em>Ce commentaire a été signalé '; echo $commentaire->getSignaler(); echo ' fois</em></div>'; } ?> </p>
 
-              <a href="../CONTROLER/controleradminbillet.php?id=<?php echo $commentaire->getId(); ?>&supprimercom"><input type="submit" class="btn btn-danger submit" value="Supprimer"></a>
+              <a href="../CONTROLER/controleradminbillet.php?id=<?php echo $commentaire->getId(); ?>&supprimercom"><input type="submit" class="btn btn-danger submit" value="Supprimer" OnClick="return confirm('Voulez-vous vraiment supprimer ?');"></a>
+              <a href="../CONTROLER/controleradmincom.php?id=<?php echo $commentaire->getId(); ?>"><input type="submit" class="btn btn-default submit" value="Voir les réponses / Répondre"></a>
              
         </ul>
         <?php } ?>

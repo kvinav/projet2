@@ -28,12 +28,6 @@ if (isset($_GET['idcom']) && isset($_GET['signaler']))
 
 	$managercommentaire->signaler($commentaireunique);
 
-
-
-	$billetunique = $manager->getUnique($_GET['id']);
-	$listcommentaire = $managercommentaire->getList();
-	$listreponse = $managerreponses->getListtotal();
-
 }
 // Si on rentre formulaire : ajouter commentaire et afficher liste commentaires
 if (isset($_POST['pseudo']) && isset($_POST['commentaire']))

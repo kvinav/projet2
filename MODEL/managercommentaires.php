@@ -1,4 +1,4 @@
-<?php
+à<?php
 class ManagerCommentaires
 {
 	private $bdd;
@@ -21,7 +21,7 @@ class ManagerCommentaires
 
 	public function get($id)
 	{
-		$req = $this->bdd->query('SELECT pseudo, commentaire, signaler, DATE_FORMAT(datecommentaire, \'%d/%m/%Y à %Hh%imin\') AS datecommentaire FROM commentaires ORDER BY id');
+		$req = $this->bdd->query('SELECT pseudo, commentaire, signaler, DATE_FORMAT(datecommentaire, "%d/%m/%Y à %Hh%imin") AS datecommentaire FROM commentaires ORDER BY id');
 		$donnees = $req->fetch(PDO::FETCH_ASSOC);
 
 		$req->execute();
@@ -29,8 +29,17 @@ class ManagerCommentaires
 
 	public function signaler(Commentaires $commentaire)
 	{
-		$req = $this->bdd->prepare('UPDATE commentaires SET signaler = :signaler WHERE id = :id');
+		$req = $this->bdd->prepare('UPDATE commentaires SET signaler = :signaler, datesignaler = NOW() WHERE id = :id');
 		$req->bindvalue(':signaler', $commentaire->getSignaler() + 1, PDO::PARAM_INT);
+		$req->bindValue(':id', $commentaire->getId(), PDO::PARAM_INT);
+
+		$req->execute();
+
+	}
+	public function supprimersignalement(Commentaires $commentaire)
+	{
+		$req = $this->bdd->prepare('UPDATE commentaires SET signaler = :signaler, datesignaler = NULL WHERE id = :id');
+		$req->bindvalue(':signaler', 0, PDO::PARAM_INT);
 		$req->bindValue(':id', $commentaire->getId(), PDO::PARAM_INT);
 
 		$req->execute();
@@ -41,7 +50,7 @@ class ManagerCommentaires
 	{
 		$commentairesadmin = [];
 
-		$req = $this->bdd->prepare('SELECT id, pseudo, commentaire, signaler, DATE_FORMAT(datecommentaire, \'%d/%m/%Y à %Hh%imin\') AS datecommentaire FROM commentaires WHERE id_billet = :id_billet ORDER BY signaler DESC, id DESC');
+		$req = $this->bdd->prepare('SELECT id, pseudo, commentaire, signaler, DATE_FORMAT(datecommentaire, "%d/%m/%Y à %Hh%imin") AS datecommentaire FROM commentaires WHERE id_billet = :id_billet ORDER BY signaler DESC, id DESC');
 			$req->bindValue(':id_billet', $_GET['id']);
      	$req->execute();
 
@@ -57,7 +66,7 @@ class ManagerCommentaires
 	{
 		$commentaires = [];
 
-		$req = $this->bdd->prepare('SELECT id, pseudo, commentaire, signaler, DATE_FORMAT(datecommentaire, \'%d/%m/%Y à %Hh%imin\') AS datecommentaire FROM commentaires WHERE id_billet = :id_billet ORDER BY id');
+		$req = $this->bdd->prepare('SELECT id, pseudo, commentaire, signaler, DATE_FORMAT(datecommentaire, "%d/%m/%Y à %Hh%imin") AS datecommentaire FROM commentaires WHERE id_billet = :id_billet ORDER BY id');
 		$req->bindValue(':id_billet', $_GET['id']);
      	$req->execute();
 
@@ -73,7 +82,7 @@ class ManagerCommentaires
 	{
 		$commentairestotal = [];
 
-		$req = $this->bdd->prepare('SELECT id, pseudo, commentaire, signaler, id_billet, DATE_FORMAT(datecommentaire, \'%d/%m/%Y à %Hh%imin\') AS datecommentaire FROM commentaires ORDER BY signaler DESC, id DESC');
+		$req = $this->bdd->prepare('SELECT id, pseudo, commentaire, signaler, id_billet, DATE_FORMAT(datecommentaire, "%d/%m/%Y à %Hh%imin") AS datecommentaire FROM commentaires ORDER BY id_billet DESC, signaler DESC');
      	$req->execute();
 
 		while ($donnees = $req->fetch(PDO::FETCH_ASSOC))
@@ -83,11 +92,26 @@ class ManagerCommentaires
 
 		return $commentairestotal;
 	}
-	public function getUnique()
+	
+	public function getListsignales()
+	{
+		$commentairestotalsignales = [];
+
+		$req = $this->bdd->prepare('SELECT id, pseudo, commentaire, signaler, id_billet, datesignaler, DATE_FORMAT(datecommentaire, "%d/%m/%Y à %Hh%imin") AS datecommentaire FROM commentaires ORDER BY datesignaler DESC LIMIT 0,5');
+     	$req->execute();
+
+		while ($donnees = $req->fetch(PDO::FETCH_ASSOC))
+		{
+			$commentairestotalsignales[] = new Commentaires($donnees);
+		}
+
+		return $commentairestotalsignales;
+	}
+	public function getUnique($id)
     {
        
-      $req = $this->bdd->prepare('SELECT id, pseudo, commentaire, signaler, id_billet, DATE_FORMAT(datecommentaire, \'%d/%m/%Y à %Hh%imin\') AS datecommentaire FROM commentaires WHERE id = :id');
-      $req->bindValue(':id', $_GET['id']);
+      $req = $this->bdd->prepare('SELECT id, pseudo, commentaire, signaler, id_billet, DATE_FORMAT(datecommentaire, "%d/%m/%Y à %Hh%imin") AS datecommentaire FROM commentaires WHERE id = :id');
+      $req->bindValue(':id', $id);
       $req->execute();
       $req->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Commentaires');
       $commentaireunique = $req->fetch();

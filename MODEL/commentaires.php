@@ -8,6 +8,7 @@ class Commentaires
 	private $datecommentaire;
 	private $id_billet;
 	private $signaler;
+	private $datesignaler;
 
 	public function __construct($value = [])
 	{
@@ -112,6 +113,17 @@ class Commentaires
 	public function getSignaler()
 	{
 		return $this->signaler;
+	}
+	
+	public function setDatesignaler($datesignaler)
+	{
+			$this->datesignaler = $datesignaler;
+		
+	}
+
+	public function getDatesignaler()
+	{
+		return $this->datesignaler;
 	}
 
 }

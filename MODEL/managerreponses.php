@@ -37,6 +37,16 @@ class ManagerReponses
 
 	}
 
+	public function supprimersignalement(Reponses $reponse)
+	{
+		$req = $this->bdd->prepare('UPDATE reponses SET signaler = :signaler, datesignaler = NULL WHERE id = :id');
+		$req->bindvalue(':signaler', 0, PDO::PARAM_INT);
+		$req->bindValue(':id', $reponse->getId(), PDO::PARAM_INT);
+
+		$req->execute();
+
+	}
+
 	public function getListadmin()
 	{
 		$reponsesadmin = [];
@@ -83,6 +93,22 @@ class ManagerReponses
 
 		return $reponsestotal;
 	}
+
+	public function getListsignales()
+	{
+		$reponsestotalsignales = [];
+
+		$req = $this->bdd->prepare('SELECT id, pseudo, reponse, signaler, id_billet, datesignaler, DATE_FORMAT(datereponse, "%d/%m/%Y à %Hh%imin") AS datereponse FROM reponses ORDER BY datesignaler DESC LIMIT 0,5');
+     	$req->execute();
+
+		while ($donnees = $req->fetch(PDO::FETCH_ASSOC))
+		{
+			$reponsestotalsignales[] = new Reponses($donnees);
+		}
+
+		return $reponsestotalsignales;
+	}
+
 	public function getUnique()
     {
        

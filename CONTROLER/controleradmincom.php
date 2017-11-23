@@ -24,7 +24,7 @@ if (isset($_POST['pseudo']) && isset($_POST['reponse']))
 
 	$managerreponses->add($reponse);
 $commentaireunique = $manager->getUnique($_GET['id']);
-$listreponse = $managerreponses->getListadmin();
+$listreponse = $managerreponses->getList();
 
 	include_once('../VIEW/admincom.php');
 }
@@ -33,7 +33,7 @@ else if (isset($_GET['id']) && isset($_GET['idrep']) && isset($_GET['supprimerre
 
 {
     $commentaireunique = $manager->getUnique($_GET['id']);
-$listreponse = $managerreponses->getListadmin();
+$listreponse = $managerreponses->getList();
 
 	$reponse->setId($_GET['idrep']);
 	$managerreponses->delete($reponse);
@@ -48,10 +48,21 @@ else if (isset($_GET['id']) && isset($_GET['supprimercom']))
 	
 	header('Location: ../CONTROLER/controlercomliste.php');
 }
+if (isset($_GET['id']) && isset($_GET['idrep']) && isset($_GET['supprimersignalement'])) 
+{
+	$reponse->setId($_GET['idrep']);
+	$managerreponses->supprimersignalement($reponse);
+	$commentaireunique = $manager->getUnique($_GET['id']);
+    $listreponse = $managerreponses->getList();
+
+	include_once('../VIEW/admincom.php');
+
+
+}
 else if (isset($_GET['id']))
 {
     $commentaireunique = $manager->getUnique($_GET['id']);
-$listreponse = $managerreponses->getListadmin();
+$listreponse = $managerreponses->getList();
 
 	include_once('../VIEW/admincom.php');
 }

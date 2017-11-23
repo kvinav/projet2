@@ -19,16 +19,28 @@ if (isset($_GET['id']) && isset($_POST['pseudo']) && isset($_POST['reponse']))
 
 	$managerreponses->add($reponse);
 $commentaireunique = $manager->getUnique($_GET['id']);
-$listreponse = $managerreponses->getListadmin();
+$listreponse = $managerreponses->getList();
 
 	include_once('../VIEW/commentaires.php');
+}
+if (isset($_GET['idrep']) && isset($_GET['signaler']))
+{	
+
+	$reponseunique = $managerreponses->getUnique($_GET['idrep']);
+
+	$managerreponses->signaler($reponseunique);
+	$commentaireunique = $manager->getUnique($_GET['id']);
+$listreponse = $managerreponses->getList();
+
+	include_once('../VIEW/commentaires.php');
+
 }
 
 
 else if (isset($_GET['id']))
 {
     $commentaireunique = $manager->getUnique($_GET['id']);
-$listreponse = $managerreponses->getListadmin();
+$listreponse = $managerreponses->getList();
 
 	include_once('../VIEW/commentaires.php');
 }

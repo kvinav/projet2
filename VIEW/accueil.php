@@ -1,6 +1,6 @@
 
  <?php include_once('../VIEW/header.php'); ?>
- 
+
     <!-- Page Header -->
     <header class="masthead" style="background-image: url('../VIEW/img/home.jpg')">
       <div class="container">
@@ -38,7 +38,15 @@
             </a>
             <p class="post-meta">Posté par
               <a href="about.php"><?php echo $billet->getAuteur(); ?></a>
-              le  <?php echo $billet->getDatebillet(); ?></p>
+              <?php if ($billet->getDatebillet() == $billet->getDatemodif()) { 
+                   
+                  ?> le  <?php echo $billet->getDatebillet(); ?> <?php
+              }
+              
+              else {
+                  ?> le  <?php echo $billet->getDatebillet(); ?> <br> Mise-à-jour le <?php echo $billet->getDatemodif(); ?> </p>
+             <?php } ?>
+              
            
           </div> 
              <?php } ?>

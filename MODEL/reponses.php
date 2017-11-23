@@ -8,6 +8,7 @@ class Reponses
 	private $reponse;
 	private $id_commentaire;
 	private $signaler;
+	private $datesignaler;
 
 	public function __construct($value = [])
 	{
@@ -113,5 +114,17 @@ class Reponses
 	{
 		return $this->signaler;
 	}
+	
+	public function setDatesignaler($datesignaler)
+	{
+			$this->datesignaler = $datesignaler;
+		
+	}
+
+	public function getDatesignaler()
+	{
+		return $this->datesignaler;
+	}
+
 
 }

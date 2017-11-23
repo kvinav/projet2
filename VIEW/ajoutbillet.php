@@ -24,7 +24,7 @@
             <div class="col-md-10">
               <div class="form-group">
                 <label for="description">Billet</label>
-                <textarea class="form-control" id="billet" name="billet" placeholder="Ecrivez votre billet"></textarea>
+                <textarea class="form-control" rows="25" cols="80" id="billet" name="billet" placeholder="Ecrivez votre billet"></textarea>
               </div>
               <div>
 

@@ -1,11 +1,14 @@
 <?php
 require '../APP/bootstrap.php';
 
+
 $commentaireobj = new Commentaires();
 
 $managercommentaire = new ManagerCommentaires($bdd);
 
 $listcommentaire = $managercommentaire->getListtotal();
+
+
 
 
 if (!isset($_SESSION['user']) OR !isset($_SESSION['password']))
@@ -20,7 +23,15 @@ if (isset($_SESSION['user']) && isset($_SESSION['password']) && isset($_GET['id'
 
 	include('../VIEW/comliste.php');
 }
+else if (isset($_GET['id']) && isset($_GET['supprimersignalement'])) 
+{
+	$commentaireobj->setId($_GET['id']);
+	$managercommentaire->supprimersignalement($commentaireobj);
+	$listcommentaire = $managercommentaire->getListtotal();
 
+	include('../VIEW/comliste.php');
+
+}
 else
 {
 include('../VIEW/comliste.php');
