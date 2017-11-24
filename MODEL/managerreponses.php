@@ -10,13 +10,11 @@ class ManagerReponses
 
 	public function add(Reponses $reponse)
 	{
-		$req = $this->bdd->prepare('INSERT INTO reponses (pseudo, reponse, id_commentaire, datereponse) VALUES(:pseudo, :reponse, :id_commentaire, NOW())');
+		$req = $this->bdd->query('INSERT INTO reponses (pseudo, reponse, id_commentaire, datereponse) VALUES(?, ?, ?, NOW())',
+		                        [$reponse->getPseudo(), $reponse->getReponse(), $reponse->getId_commentaire()]
+		                        );
 
-		$req->bindValue(':pseudo', $reponse->getPseudo(), PDO::PARAM_STR);
-		$req->bindValue(':reponse', $reponse->getReponse(), PDO::PARAM_STR);
-		$req->bindValue(':id_commentaire', $reponse->getId_commentaire(), PDO::PARAM_INT);
-		$req->execute();
-
+	
 	}
 
 	public function get($id)
@@ -29,21 +27,18 @@ class ManagerReponses
 
 	public function signaler(Reponses $reponse)
 	{
-		$req = $this->bdd->prepare('UPDATE reponses SET signaler = :signaler WHERE id = :id');
-		$req->bindvalue(':signaler', $reponse->getSignaler() + 1, PDO::PARAM_INT);
-		$req->bindValue(':id', $reponse->getId(), PDO::PARAM_INT);
-
-		$req->execute();
+		$req = $this->bdd->query('UPDATE reponses SET signaler = ? WHERE id = ?',
+		                        [$reponse->getSignaler() + 1, $reponse->getId()]
+		                        );
 
 	}
 
 	public function supprimersignalement(Reponses $reponse)
 	{
-		$req = $this->bdd->prepare('UPDATE reponses SET signaler = :signaler, datesignaler = NULL WHERE id = :id');
-		$req->bindvalue(':signaler', 0, PDO::PARAM_INT);
-		$req->bindValue(':id', $reponse->getId(), PDO::PARAM_INT);
-
-		$req->execute();
+		$req = $this->bdd->query('UPDATE reponses SET signaler = ?, datesignaler = NULL WHERE id = ?',
+		                        [0, $reponse->getId()]
+		                        );
+	
 
 	}
 
@@ -51,9 +46,10 @@ class ManagerReponses
 	{
 		$reponsesadmin = [];
 
-		$req = $this->bdd->prepare('SELECT id, pseudo, reponse, DATE_FORMAT(datereponse, \'%d/%m/%Y à %Hh%imin\') AS datereponse, signaler FROM reponses WHERE id_commentaire = :id_commentaire ORDER BY signaler DESC, id DESC');
-			$req->bindValue(':id_commentaire', $_GET['id']);
-     	$req->execute();
+		$req = $this->bdd->query('SELECT id, pseudo, reponse, DATE_FORMAT(datereponse, \'%d/%m/%Y à %Hh%imin\') AS datereponse, signaler FROM reponses WHERE                             id_commentaire = ? ORDER BY signaler DESC, id DESC',
+		                        [$_GET['id']]
+		                        );
+		
 
 		while ($donnees = $req->fetch(PDO::FETCH_ASSOC))
 		{
@@ -67,9 +63,9 @@ class ManagerReponses
 	{
 		$reponses = [];
 
-		$req = $this->bdd->prepare('SELECT id, pseudo, reponse, DATE_FORMAT(datereponse, \'%d/%m/%Y à %Hh%imin\') AS datereponse, signaler FROM reponses WHERE id_commentaire = :id_commentaire ORDER BY id');
-		$req->bindValue(':id_commentaire', $_GET['id']);
-     	$req->execute();
+		$req = $this->bdd->query('SELECT id, pseudo, reponse, DATE_FORMAT(datereponse, \'%d/%m/%Y à %Hh%imin\') AS datereponse, signaler FROM reponses WHERE                             id_commentaire = ? ORDER BY id', 
+	                        	[$_GET['id']]
+		                        );
 
 		while ($donnees = $req->fetch(PDO::FETCH_ASSOC))
 		{
@@ -83,8 +79,8 @@ class ManagerReponses
 	{
 		$reponsestotal = [];
 
-		$req = $this->bdd->prepare('SELECT id, pseudo, reponse, DATE_FORMAT(datereponse, \'%d/%m/%Y à %Hh%imin\') AS datereponse, signaler, id_commentaire FROM reponses ORDER BY signaler DESC, id DESC');
-     	$req->execute();
+		$req = $this->bdd->query('SELECT id, pseudo, reponse, DATE_FORMAT(datereponse, \'%d/%m/%Y à %Hh%imin\') AS datereponse, signaler, id_commentaire FROM reponses ORDER BY signaler DESC, id DESC');
+     
 
 		while ($donnees = $req->fetch(PDO::FETCH_ASSOC))
 		{
@@ -98,8 +94,8 @@ class ManagerReponses
 	{
 		$reponsestotalsignales = [];
 
-		$req = $this->bdd->prepare('SELECT id, pseudo, reponse, signaler, id_billet, datesignaler, DATE_FORMAT(datereponse, "%d/%m/%Y à %Hh%imin") AS datereponse FROM reponses ORDER BY datesignaler DESC LIMIT 0,5');
-     	$req->execute();
+		$req = $this->bdd->query('SELECT id, pseudo, reponse, signaler, id_billet, datesignaler, DATE_FORMAT(datereponse, "%d/%m/%Y à %Hh%imin") AS datereponse FROM reponses ORDER BY datesignaler DESC LIMIT 0,5');
+    
 
 		while ($donnees = $req->fetch(PDO::FETCH_ASSOC))
 		{
@@ -112,9 +108,10 @@ class ManagerReponses
 	public function getUnique()
     {
        
-      $req = $this->bdd->prepare('SELECT id, pseudo, reponse, DATE_FORMAT(datereponse, \'%d/%m/%Y à %Hh%imin\') AS datereponse, signaler, id_commentaire FROM reponses WHERE id = :id');
-      $req->bindValue(':id', $_GET['idrep']);
-      $req->execute();
+      $req = $this->bdd->query('SELECT id, pseudo, reponse, DATE_FORMAT(datereponse, \'%d/%m/%Y à %Hh%imin\') AS datereponse, signaler, id_commentaire FROM reponses                      WHERE id = ?',
+                                [$_GET['idrep']]
+                                );
+     
       $req->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Reponses');
       $reponseunique = $req->fetch();
       return $reponseunique;
@@ -123,12 +120,10 @@ class ManagerReponses
 
 	public function update(Reponses $reponse)
 	{
-		$req = $this->bdd->prepare('UPDATE reponses SET pseudo = :pseudo, reponse = :reponse WHERE id= :id');
+		$req = $this->bdd->query('UPDATE reponses SET pseudo = ?, reponse = ? WHERE id= :id',
+		                        [$reponse->getPseudo(), $reponse->getReponse()]
+		                        );
 
-		$req->bindValue(':pseudo', $reponse->getPseudo(), PDO::PARAM_INT);
-		$req->bindValue(':reponse', $reponse->getReponse(), PDO::PARAM_INT);
-
-		$req->execute();
 	}
 
 	public function delete(Reponses $reponse)
@@ -136,7 +131,7 @@ class ManagerReponses
 		$this->bdd->exec('DELETE FROM reponses WHERE id = '.$reponse->getID());
 	}
 
-	public function setBDD(PDO $bdd)
+	public function setBDD($bdd)
 	{
 		$this->bdd = $bdd;
 	}

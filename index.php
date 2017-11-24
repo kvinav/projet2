@@ -2,4 +2,3 @@
 
 header('Location: CONTROLER/index.php');
 
-?>

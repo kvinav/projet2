@@ -14,11 +14,9 @@ class ManagerBillets
 	public function add(Billets $billets)
 	{
 
-		$req = $this->bdd->prepare('INSERT INTO billets (auteur, titre, billet, datebillet) VALUES(\'Jean Forteroche\', :titre, :billet, NOW())');
-
-		$req->bindValue(':titre', $billets->getTitre(), PDO::PARAM_STR);
-		$req->bindValue(':billet', $billets->getBillet(), PDO::PARAM_STR);
-		$req->execute();
+		$req = $this->bdd->query('INSERT INTO billets (auteur, titre, billet, datebillet) VALUES(\'Jean Forteroche\', ?, ?, NOW())', 
+		                          [$billets->getTitre(), $billets->getBillet()] 
+		                        );
 
 	}
 
@@ -50,9 +48,8 @@ class ManagerBillets
     public function getUnique()
     {
        
-      $req = $this->bdd->prepare('SELECT id, auteur, titre, billet, DATE_FORMAT(datebillet, \'%d/%m/%Y à %Hh%imin\') AS datebillet, DATE_FORMAT(datemodif, \'%d/%m/%Y à %Hh%imin\') AS datemodif FROM billets WHERE id = :id');
-      $req->bindValue(':id', $_GET['id']);
-      $req->execute();
+      $req = $this->bdd->query('SELECT id, auteur, titre, billet, DATE_FORMAT(datebillet, \'%d/%m/%Y à %Hh%imin\') AS datebillet, DATE_FORMAT(datemodif, \'%d/%m/%Y à %Hh%imin\') AS datemodif FROM billets WHERE id = ?', [$_GET['id']]);
+      
       $req->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Billets');
       $billetunique = $req->fetch();
       return $billetunique;
@@ -62,12 +59,10 @@ class ManagerBillets
 
   	 public function update(Billets $billets)
     {
-        $req = $this->bdd->prepare('UPDATE billets SET titre = :titre, billet = :billet, datemodif = NOW() WHERE id = '.$billets->getId());
+        $req = $this->bdd->query('UPDATE billets SET titre = ?, billet = ?, datemodif = NOW() WHERE id = '.$billets->getId(), 
+                                [$billets->getTitre(), $billets->getBillet()]
+                                );
   
-        $req->bindValue(':titre', $billets->getTitre(), PDO::PARAM_STR);
-        $req->bindValue(':billet', $billets->getBillet(), PDO::PARAM_STR);
-  
-        $req->execute();
     }
 
     //Suppression d'un billet
@@ -78,7 +73,7 @@ class ManagerBillets
     }
  
  
-  	public function setBdd(PDO $bdd)
+  	public function setBdd($bdd)
   	{
    		 $this->bdd = $bdd;
   	}

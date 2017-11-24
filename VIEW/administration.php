@@ -28,9 +28,8 @@
               <h3><strong><?php echo $commentaire->getPseudo(); ?></strong></h3> - <p><em>le <?php echo $commentaire->getDatecommentaire(); ?></em></p>
 
               <p><?php echo $commentaire->getCommentaire(); ?></p>
-               <p> <?php if ($commentaire->getSignaler() >= 1) { echo '<div class="list-group-item list-group-item-danger col-md-3"><em>Ce commentaire a été signalé '; echo $commentaire->getSignaler(); echo ' fois</em></div>'; 
-                echo '
-                <a href="../CONTROLER/controlerconnexion.php?id='; echo $commentaire->getId(); echo '&supprimersignalement=0"><input type="submit" class="btn btn-default submit" value="Supprimer les signalements" OnClick="return confirm(\'Voulez-vous vraiment supprimer les signalements ?\');"></a>'; } ?> </p><br><br><br>
+               <p> <?php if ($commentaire->getSignaler() >= 1) { echo '<div class="list-group-item list-group-item-danger col-md-3"><em>Ce commentaire a été signalé '; echo $commentaire->getSignaler(); echo ' fois</em></div>'; echo '
+                <a href="../CONTROLER/controlerconnexion.php?id='; echo $commentaire->getId(); echo '&supprimersignalement=0"><input type="submit" class="btn btn-default submit" value="Supprimer les signalements" OnClick="return confirm(\'Voulez-vous vraiment supprimer les signalements ?\');"></a>'; } ?> </p><br>
 
               <a href="../CONTROLER/controleradminbillet.php?id=<?php echo $commentaire->getId_billet(); ?>"><input type="submit" class="btn btn-default submit" value="Voir le billet associé"></a><br><br>
               <a href="../CONTROLER/controleradmincom.php?id=<?php echo $commentaire->getId(); ?>"><input type="submit" class="btn btn-default submit" value="Voir les réponses / Répondre"></a><br><br>
