@@ -15,20 +15,20 @@
       <div class="row">
         <div class="col-md-12">
           <!-- small box -->
-        <?php foreach ($listcommentaire as $commentaire) { ?>
+        <?php foreach ($listcomment as $comment) { ?>
         <div class="list-group">
           <div class="list-group-item">
              
-              <h3><strong><?php echo $commentaire->getPseudo(); ?></strong></h3> - <p><em>le <?php echo $commentaire->getDatecommentaire(); ?></em></p>
+              <h3><strong><?php echo $comment->getPseudo(); ?></strong></h3> - <p><em>le <?php echo $comment->getDatecomment(); ?></em></p>
 
-              <p><?php echo $commentaire->getCommentaire(); ?></p>
-               <p> <?php if ($commentaire->getSignaler() >= 1) { echo '<div class="list-group-item list-group-item-danger col-md-3"><em>Ce commentaire a été signalé '; echo $commentaire->getSignaler(); echo ' fois</em></div>';
+              <p><?php echo $comment->getComment(); ?></p>
+               <p> <?php if ($comment->getReport() >= 1) { echo '<div class="list-group-item list-group-item-danger col-md-3"><em>Ce commentaire a été signalé '; echo $comment->getReport(); echo ' fois</em></div>';
                     echo '
-                <a href="../CONTROLER/controlercomliste.php?id='; echo $commentaire->getId(); echo '&supprimersignalement=0"><input type="submit" class="btn btn-default submit" value="Supprimer les signalements" OnClick="return confirm(\'Voulez-vous vraiment supprimer les signalements ?\');"></a>'; } ?> </p><br><br><br>
+                <a href="../CONTROLER/controlercomliste.php?id='; echo $comment->getId(); echo '&supprimersignalement=0"><input type="submit" class="btn btn-default submit" value="Supprimer les signalements" OnClick="return confirm(\'Voulez-vous vraiment supprimer les signalements ?\');"></a>'; } ?> </p><br><br><br>
 
-              <a href="../CONTROLER/controlercomliste.php?id=<?php echo $commentaire->getId(); ?>&supprimer"><input type="submit" class="btn btn-danger submit" value="Supprimer" OnClick="return confirm('Voulez-vous vraiment supprimer ?');"></a>
-              <a href="../CONTROLER/controleradminbillet.php?id=<?php echo $commentaire->getId_billet(); ?>"><input type="submit" class="btn btn-default submit" value="Voir le billet associé"></a><br><br>
-              <a href="../CONTROLER/controleradmincom.php?id=<?php echo $commentaire->getId(); ?>"><input type="submit" class="btn btn-default submit" value="Voir les réponses / Répondre"></a><br><br>
+              <a href="../CONTROLER/controlercomliste.php?id=<?php echo $comment->getId(); ?>&supprimer"><input type="submit" class="btn btn-danger submit" value="Supprimer" OnClick="return confirm('Voulez-vous vraiment supprimer ?');"></a>
+              <a href="../CONTROLER/controleradminbillet.php?id=<?php echo $comment->getId_post(); ?>"><input type="submit" class="btn btn-default submit" value="Voir le billet associé"></a><br><br>
+              <a href="../CONTROLER/controleradmincom.php?id=<?php echo $comment->getId(); ?>"><input type="submit" class="btn btn-default submit" value="Voir les réponses / Répondre"></a><br><br>
               
               </div><br>
               

@@ -8,11 +8,11 @@ $manageradmin = new ManagerAdmin($bdd);
 
 $firstadmin = $manageradmin->getUnique();
 
-$commentaireobj = new Commentaires();
+$commentobj = new Comments();
 
-$managercommentaire = new ManagerCommentaires($bdd);
+$managercomment = new ManagerComments($bdd);
 
-$listcommentaire = $managercommentaire->getListsignales();
+$listcomment = $managercomment->getListreports();
 
 
 if (isset($_POST['user']) && isset($_POST['password']) && $_POST['user'] == $firstadmin->getUser()  && $_POST['password'] == $firstadmin->getPassword())
@@ -29,9 +29,9 @@ else if (isset($_POST['user']) && isset($_POST['password']))
 }
 else if (isset($_SESSION['user']) && isset($_SESSION['password']) && isset($_GET['id']) && isset($_GET['supprimersignalement'])) 
 {
-	$commentaireobj->setId($_GET['id']);
-	$managercommentaire->supprimersignalement($commentaireobj);
-	$listcommentaire = $managercommentaire->getListtotal();
+	$commentobj->setId($_GET['id']);
+	$managercomment->deletereport($commentobj);
+	$listcomment = $managercomment->getListtotal();
 
 	include('../VIEW/administration.php');
 

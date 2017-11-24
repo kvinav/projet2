@@ -23,28 +23,28 @@
 
             <!-- Génère la liste des billets -->
         
-             <?php foreach ($billets as $billet) { ?>
+             <?php foreach ($posts as $post) { ?>
           <div class="post-preview">
 
             <!-- Renvoie vers un post en fonction de l'id  -->
-            <a href="../CONTROLER/controlerpost.php?id=<?php echo $billet->getId(); ?>">
+            <a href="../CONTROLER/controlerpost.php?id=<?php echo $post->getId(); ?>">
 
               <h2 class="post-title">
-                <?php echo $billet->getTitre(); ?>
+                <?php echo $post->getTitle(); ?>
               </h2>
               <h3 class="post-subtitle">
-                <p><?php echo substr($billet->getBillet(), 0, 100); ?>(...)<p>
+                <p><?php echo substr($post->getPost(), 0, 100); ?>(...)<p>
               </h3>
             </a>
             <p class="post-meta">Posté par
-              <a href="about.php"><?php echo $billet->getAuteur(); ?></a>
-              <?php if ($billet->getDatebillet() == $billet->getDatemodif()) { 
+              <a href="about.php"><?php echo $post->getAuthor(); ?></a>
+              <?php if ($post->getDatepost() == $post->getDatemodif()) { 
                    
-                  ?> le  <?php echo $billet->getDatebillet(); ?> <?php
+                  ?> le  <?php echo $post->getDatepost(); ?> <?php
               }
               
               else {
-                  ?> le  <?php echo $billet->getDatebillet(); ?> <br> Mise-à-jour le <?php echo $billet->getDatemodif(); ?> </p>
+                  ?> le  <?php echo $post->getDatepost(); ?> <br> Mise-à-jour le <?php echo $post->getDatemodif(); ?> </p>
              <?php } ?>
               
            

@@ -2,57 +2,53 @@
 require '../APP/bootstrap.php';
 
 // Création des objets $billet et $manager
-$billet = new Billets();
+$post = new Posts();
 
-$manager = new ManagerBillets($bdd);
+$manager = new ManagerPosts($bdd);
 
 //Création des objets $commentaire et $managercommentaire
-$commentaireobj = new Commentaires();
+$commentobj = new Comments();
 
-$managercommentaire = new ManagerCommentaires($bdd);
-
-
-$reponse = new Reponses();
-
-$managerreponses = new ManagerReponses($bdd);
+$managercomment = new ManagerComments($bdd);
 
 
+$answer = new Answers();
 
-// Si on a un id pour le commentaire et signaler,
-//on récupère le commentaire et on lui ajoute +1 à signaler;
+$manageranswers = new ManagerAnswers($bdd);
+
 
 if (isset($_GET['idcom']) && isset($_GET['signaler']))
 {	
 
-	$commentaireunique = $managercommentaire->getUnique($_GET['idcom']);
+	$commentunique = $managercomment->getUnique($_GET['idcom']);
 
-	$managercommentaire->signaler($commentaireunique);
+	$managercomment->report($commentunique);
 
 }
-// Si on rentre formulaire : ajouter commentaire et afficher liste commentaires
+
 if (isset($_POST['pseudo']) && isset($_POST['commentaire']))
 {
-	$commentaireobj->setPseudo($_POST['pseudo']);
-	$commentaireobj->setCommentaire($_POST['commentaire']);
-	$commentaireobj->setId_billet($_GET['id']);
+	$commentobj->setPseudo($_POST['pseudo']);
+	$commentobj->setComment($_POST['commentaire']);
+	$commentobj->setId_post($_GET['id']);
 
 
 
-	$managercommentaire->add($commentaireobj);
+	$managercomment->add($commentobj);
 
-	$billetunique = $manager->getUnique($_GET['id']);
-	$listcommentaire = $managercommentaire->getList();
-	$listreponse = $managerreponses->getListtotal();
+	$postunique = $manager->getUnique($_GET['id']);
+	$listcomment = $managercomment->getList();
+	$listanswer = $manageranswers->getListtotal();
 	
 	include('../VIEW/post.php');
 }
 
-// Sinon : afficher liste commentaires
+
 else
 {
-		$billetunique = $manager->getUnique($_GET['id']);
-		$listcommentaire = $managercommentaire->getList();
-		$listreponse = $managerreponses->getListtotal();
+		$postunique = $manager->getUnique($_GET['id']);
+		$listcomment = $managercomment->getList();
+		$listanswer = $manageranswers->getListtotal();
 	include('../VIEW/post.php');
 }
 ?>

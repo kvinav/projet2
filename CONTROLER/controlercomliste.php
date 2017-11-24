@@ -2,11 +2,11 @@
 require '../APP/bootstrap.php';
 
 
-$commentaireobj = new Commentaires();
+$commentobj = new Comments();
 
-$managercommentaire = new ManagerCommentaires($bdd);
+$managercomment = new ManagerComments($bdd);
 
-$listcommentaire = $managercommentaire->getListtotal();
+$listcomment = $managercomment->getListtotal();
 
 
 
@@ -17,17 +17,17 @@ if (!isset($_SESSION['user']) OR !isset($_SESSION['password']))
 }
 if (isset($_SESSION['user']) && isset($_SESSION['password']) && isset($_GET['id']) && isset($_GET['supprimer']))
 {
-	$commentaireobj->setId($_GET['id']);
-	$managercommentaire->delete($commentaireobj);
-	$listcommentaire = $managercommentaire->getListtotal();
+	$commentobj->setId($_GET['id']);
+	$managercomment->delete($commentobj);
+	$listcomment = $managercomment->getListtotal();
 
 	include('../VIEW/comliste.php');
 }
 else if (isset($_GET['id']) && isset($_GET['supprimersignalement'])) 
 {
-	$commentaireobj->setId($_GET['id']);
-	$managercommentaire->supprimersignalement($commentaireobj);
-	$listcommentaire = $managercommentaire->getListtotal();
+	$commentobj->setId($_GET['id']);
+	$managercomment->deletereport($commentobj);
+	$listcomment = $managercomment->getListtotal();
 
 	include('../VIEW/comliste.php');
 

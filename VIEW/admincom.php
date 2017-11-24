@@ -16,25 +16,25 @@
 
         
             <div class="list-group-item">
-          <h3><?php echo $commentaireunique->getPseudo(); ?> </h3></br>
-              <p> <?php echo $commentaireunique->getCommentaire(); ?> </p></br>
-            le  <?php echo $commentaireunique->getDatecommentaire(); ?> <br><br> 
+          <h3><?php echo $commentunique->getPseudo(); ?> </h3></br>
+              <p> <?php echo $commentunique->getComment(); ?> </p></br>
+            le  <?php echo $commentunique->getDatecomment(); ?> <br><br> 
              
 
-             <a href="../CONTROLER/controleradmincom.php?id=<?php echo $commentaireunique->getId(); ?>&supprimercom"><input type="submit" class="btn btn-danger submit" value="Supprimer" OnClick="return confirm('Voulez-vous vraiment supprimer ?');"></a>
-             <a href="../CONTROLER/controleradminbillet.php?id=<?php echo $commentaireunique->getId_billet(); ?>"><input type="submit" class="btn btn-default submit" value="Voir le billet associé"></a><br><br><br>
+             <a href="../CONTROLER/controleradmincom.php?id=<?php echo $commentunique->getId(); ?>&supprimercom"><input type="submit" class="btn btn-danger submit" value="Supprimer" OnClick="return confirm('Voulez-vous vraiment supprimer ?');"></a>
+             <a href="../CONTROLER/controleradminbillet.php?id=<?php echo $commentunique->getId_billet(); ?>"><input type="submit" class="btn btn-default submit" value="Voir le billet associé"></a><br><br><br>
             </div> <br>
             
            <div class="col-md-10 col-md-offset-1">
-                <?php foreach ($listreponse as $reponse) { ?>
+                <?php foreach ($listanswer as $answer) { ?>
         <ul class="lis-group">
-          <li class="list-group-item"><p><strong><?php echo $reponse->getPseudo(); ?></strong> - <em>le <?php echo $reponse->getDatereponse(); ?></em></p>
+          <li class="list-group-item"><p><strong><?php echo $answer->getPseudo(); ?></strong> - <em>le <?php echo $answer->getDateanswer(); ?></em></p>
 
-              <p><?php echo $reponse->getReponse();  ?></p>
-              <p> <?php if ($reponse->getSignaler() >= 1) { echo '<div class="list-group-item list-group-item-danger"><em>Cette réponse a été signalée '; echo $reponse->getSignaler(); echo ' fois</em></div>';
-               echo '<a href="../CONTROLER/controleradmincom.php?idrep='; echo $reponse->getId(); echo '&supprimersignalement=0&id='; echo $commentaireunique->getId(); echo '"><input type="submit" class="btn btn-default submit" value="Supprimer les signalements" OnClick="return confirm(\'Voulez-vous vraiment supprimer les signalements ?\');"></a>';} ?> </p>
+              <p><?php echo $answer->getAnswer();  ?></p>
+              <p> <?php if ($answer->getReport() >= 1) { echo '<div class="list-group-item list-group-item-danger"><em>Cette réponse a été signalée '; echo $answer->getReport(); echo ' fois</em></div>';
+               echo '<a href="../CONTROLER/controleradmincom.php?idrep='; echo $answer->getId(); echo '&supprimersignalement=0&id='; echo $commentunique->getId(); echo '"><input type="submit" class="btn btn-default submit" value="Supprimer les signalements" OnClick="return confirm(\'Voulez-vous vraiment supprimer les signalements ?\');"></a>';} ?> </p>
 
-              <a href="../CONTROLER/controleradmincom.php?id=<?php echo $commentaireunique->getId(); ?>&idrep=<?php echo $reponse->getId(); ?>&supprimerrep"><input type="submit" class="btn btn-danger submit" value="Supprimer" OnClick="return confirm('Voulez-vous vraiment supprimer ?');"></a>
+              <a href="../CONTROLER/controleradmincom.php?id=<?php echo $commentunique->getId(); ?>&idrep=<?php echo $answer->getId(); ?>&supprimerrep"><input type="submit" class="btn btn-danger submit" value="Supprimer" OnClick="return confirm('Voulez-vous vraiment supprimer ?');"></a>
              
         </ul>
         <?php } ?>
@@ -44,7 +44,7 @@
           
           <br><br>
            
-        <form method="post" action="../CONTROLER/controleradmincom.php?id=<?php echo $commentaireunique->getId(); ?>">
+        <form method="post" action="../CONTROLER/controleradmincom.php?id=<?php echo $commentunique->getId(); ?>">
              <br><br><label class="col-md-12"><strong>Répondre au commentaire</strong></label>
           <div class="col-md-6 form-line">
               <div class="form-group col-md-6">

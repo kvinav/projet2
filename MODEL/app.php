@@ -8,7 +8,7 @@ class App
 	{
 		if (!self::$bdd) 
 		{
-			self::$bdd = new Database('avignonkevin_com_monsite', 'kvinav', 'avignonkevin_com_monsite'); 
+			self::$bdd = new Database('root', 'root', 'projet2'); 
 		}
 
 		return self::$bdd;

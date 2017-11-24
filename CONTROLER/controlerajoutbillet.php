@@ -2,9 +2,9 @@
 require '../APP/bootstrap.php';
 
 // Création des objets $billets et $manager
-$billetobject = new Billets();
+$postobject = new Posts();
 
-$manager = new ManagerBillets($bdd);
+$manager = new ManagerPosts($bdd);
 
 if (!isset($_SESSION['user']) OR !isset($_SESSION['password']))
 {
@@ -14,9 +14,9 @@ if (!isset($_SESSION['user']) OR !isset($_SESSION['password']))
 //ajouter de billet grace au formulaire de la page ajout.php
 if (isset($_SESSION['user']) && isset($_SESSION['password']) && isset($_POST['titre']) && isset($_POST['billet']))
 {
-	$billetobject->setTitre($_POST['titre']);
-	$billetobject->setBillet($_POST['billet']);
-	$manager->add($billetobject);
+	$postobject->setTitle($_POST['titre']);
+	$postobject->setPost($_POST['billet']);
+	$manager->add($postobject);
 
 	header('Location: ../CONTROLER/controleradminliste.php');
 	

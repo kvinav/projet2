@@ -1,13 +1,13 @@
 <?php
 require '../APP/bootstrap.php';
 
-$commentaire = new Commentaires();
+$comment = new Comments();
 
-$manager = new ManagerCommentaires($bdd);
+$manager = new ManagerComments($bdd);
 
-$reponse = new Reponses();
+$post = new Posts();
 
-$managerreponses = new ManagerReponses($bdd);
+$manageranswers = new ManagerAnswers($bdd);
 
 
 
@@ -16,15 +16,15 @@ if (!isset($_SESSION['user']) OR !isset($_SESSION['password']))
 	header('Location: ../VIEW/connection.php');
 }
 
-if (isset($_POST['pseudo']) && isset($_POST['reponse']))
+if (isset($_POST['pseudo']) && isset($_POST['post']))
 {
-	$reponse->setPseudo($_POST['pseudo']);
-	$reponse->setReponse($_POST['reponse']);
-	$reponse->setId_commentaire($_GET['id']);
+	$post->setPseudo($_POST['pseudo']);
+	$post->setAnswer($_POST['post']);
+	$post->setId_comment($_GET['id']);
 
-	$managerreponses->add($reponse);
-$commentaireunique = $manager->getUnique($_GET['id']);
-$listreponse = $managerreponses->getList();
+	$manageranswers->add($post);
+$commentunique = $manager->getUnique($_GET['id']);
+$listanswer = $manageranswers->getList();
 
 	include_once('../VIEW/admincom.php');
 }
@@ -32,28 +32,28 @@ $listreponse = $managerreponses->getList();
 else if (isset($_GET['id']) && isset($_GET['idrep']) && isset($_GET['supprimerrep']))
 
 {
-    $commentaireunique = $manager->getUnique($_GET['id']);
-$listreponse = $managerreponses->getList();
+    $commentunique = $manager->getUnique($_GET['id']);
+$listanswer = $manageranswers->getList();
 
-	$reponse->setId($_GET['idrep']);
-	$managerreponses->delete($reponse);
+	$post->setId($_GET['idrep']);
+	$manageranswers->delete($post);
 	include_once('../VIEW/admincom.php');
 }
 
 else if (isset($_GET['id']) && isset($_GET['supprimercom']))
 {
-	$commentaire->setId($_GET['id']);
-	$manager->delete($commentaire);
+	$comment->setId($_GET['id']);
+	$manager->delete($comment);
 
 	
 	header('Location: ../CONTROLER/controlercomliste.php');
 }
 if (isset($_GET['id']) && isset($_GET['idrep']) && isset($_GET['supprimersignalement'])) 
 {
-	$reponse->setId($_GET['idrep']);
-	$managerreponses->supprimersignalement($reponse);
-	$commentaireunique = $manager->getUnique($_GET['id']);
-    $listreponse = $managerreponses->getList();
+	$post->setId($_GET['idrep']);
+	$manageranswers->deletereport($post);
+	$commentunique = $manager->getUnique($_GET['id']);
+    $listanswer = $manageranswers->getList();
 
 	include_once('../VIEW/admincom.php');
 
@@ -61,8 +61,8 @@ if (isset($_GET['id']) && isset($_GET['idrep']) && isset($_GET['supprimersignale
 }
 else if (isset($_GET['id']))
 {
-    $commentaireunique = $manager->getUnique($_GET['id']);
-$listreponse = $managerreponses->getList();
+    $commentunique = $manager->getUnique($_GET['id']);
+$listanswer = $manageranswers->getList();
 
 	include_once('../VIEW/admincom.php');
 }

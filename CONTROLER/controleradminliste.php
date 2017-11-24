@@ -1,11 +1,11 @@
 <?php
 require '../APP/bootstrap.php';
 
-$billetobject = new Billets();
+$postobject = new Posts();
 
-$manager = new ManagerBillets($bdd);
+$manager = new ManagerPosts($bdd);
 
-$billets = $manager->getList();
+$posts = $manager->getList();
 
 if (!isset($_SESSION['user']) OR !isset($_SESSION['password']))
 {

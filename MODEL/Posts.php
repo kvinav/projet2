@@ -1,13 +1,13 @@
 <?php
 
-class Billets
+class Posts
 {
 
 	private $id;
-	private $auteur;
-	private $titre;
-	private $billet;
-	private $datebillet;
+	private $author;
+	private $title;
+	private $post;
+	private $datepost;
 	private $datemodif;
 
 	public function __construct($value = [])
@@ -53,66 +53,66 @@ class Billets
 	}
 	
 
-	//récupération auteur
-	public function setAuteur($auteur)
+
+	public function setAuthor($author)
 	{
 		
-		if (is_string($auteur))
+		if (is_string($author))
 		{
-		$this->auteur = $auteur;
+		$this->author = $author;
 		}
 
 	}
 
-	public function getAuteur()
-	{
-		return $this->auteur;
+	public function getAuthor()
+	{	
+		return $this->author;
 
 	}
 
-	//récupération titre
-	public function setTitre($titre)
+
+	public function setTitle($title)
 	{
 		
-		if (is_string($titre))
+		if (is_string($title))
 		{
-		$this->titre = $titre;
+		$this->title = $title;
 		}
 
 	}
 
-	public function getTitre()
+	public function getTitle()
 	{
-		return $this->titre;
+		return $this->title;
 
 	}
 
 
-	//récupérer billet
-	public function setBillet($billet)
+	
+	public function setPost($post)
 	{
-		if (is_string($billet))
+		if (is_string($post))
 		{
-		$this->billet = $billet;
+		$this->post = $post;
 		}
 	}
 
-	public function getBillet()
+	public function getPost()
 	{
-		return $this->billet;
+		return $this->post;
 
 	}
-//récupération date_billet
-	public function setDatebillet($datebillet)
+
+	public function setDatepost($datepost)
 	{
 		
-		$this->datebillet = $datebillet;
+		$this->datepost = $datepost;
 		
 	}
 
-	public function getDatebillet()
+	public function getDatepost()
 	{
-		return $this->datebillet;
+		return $this->datepost;
 
 	}
 

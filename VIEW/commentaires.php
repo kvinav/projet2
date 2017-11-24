@@ -7,7 +7,7 @@
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
             <div class="site-heading"><br><br>
-              <h1>Réponses au commentaire de <?php echo $commentaireunique->getPseudo(); ?></h1>
+              <h1>Réponses au commentaire de <?php echo $commentunique->getPseudo(); ?></h1>
               <span class="subheading">de Jean Forteroche</span>
             </div>
           </div>
@@ -23,22 +23,22 @@
 
         
             <div class="list-group-item">
-          <h3><?php echo $commentaireunique->getPseudo(); ?> </h3></br>
-              <p> <?php echo $commentaireunique->getCommentaire(); ?> </p></br>
-            le  <?php echo $commentaireunique->getDatecommentaire(); ?> <br><br> 
+          <h3><?php echo $commentunique->getPseudo(); ?> </h3></br>
+              <p> <?php echo $commentunique->getComment(); ?> </p></br>
+            le  <?php echo $commentunique->getDatecomment(); ?> <br><br> 
              
-    <p><?php if ($commentaireunique->getSignaler() >= 1 ) { echo '<div class="list-group-item list-group-item-danger"><em>Ce commentaire a été signalé</em></div>'; } ?></p> </li>
-            <a href="../CONTROLER/controlerpost.php?id=<?php echo $commentaireunique->getId_billet(); ?>"><input type="submit" class="btn btn-default" value="Revenir au billet"></a>
+    <p><?php if ($commentunique->getReport() >= 1 ) { echo '<div class="list-group-item list-group-item-danger"><em>Ce commentaire a été signalé</em></div>'; } ?></p> </li>
+            <a href="../CONTROLER/controlerpost.php?id=<?php echo $commentunique->getId_post(); ?>"><input type="submit" class="btn btn-default" value="Revenir au billet"></a>
             
             </div> <br>
            <div class="col-md-10 col-md-offset-2">
-               <?php foreach ($listreponse as $reponse) { ?>
+               <?php foreach ($listanswer as $answer) { ?>
         <ul class="lis-group">
-          <li class="list-group-item"><p><strong><?php echo $reponse->getPseudo(); ?></strong> - <em>le <?php echo $reponse->getDatereponse(); ?></em></p>
+          <li class="list-group-item"><p><strong><?php echo $answer->getPseudo(); ?></strong> - <em>le <?php echo $answer->getDateranswer(); ?></em></p>
 
-              <p><?php echo $reponse->getReponse();  ?></p>
-              <p> <a href="../CONTROLER/controlercom.php?idrep=<?php echo $reponse->getId(); ?>&id=<?php echo $commentaireunique->getId(); ?>&signaler"><input type="submit" class="btn btn-danger submit" value="SIGNALER"></a></p>
-              <p><?php if ($reponse->getSignaler() >= 1 ) { echo '<div class="list-group-item list-group-item-danger"><em>Cette réponse a été signalée</em></div>'; 
+              <p><?php echo $answer->getAnswer();  ?></p>
+              <p> <a href="../CONTROLER/controlercom.php?idrep=<?php echo $answer->getId(); ?>&id=<?php echo $commentunique->getId(); ?>&signaler"><input type="submit" class="btn btn-danger submit" value="SIGNALER"></a></p>
+              <p><?php if ($answer->getReport() >= 1 ) { echo '<div class="list-group-item list-group-item-danger"><em>Cette réponse a été signalée</em></div>'; 
                } ?></p> 
     
 
@@ -51,7 +51,7 @@
           
           
             <br><p  id="coms"><strong>Répondre au commentaire</strong></strong></p><br>
-        <form method="post" action="../CONTROLER/controlercom.php?id=<?php echo $commentaireunique->getId(); ?>">
+        <form method="post" action="../CONTROLER/controlercom.php?id=<?php echo $commentunique->getId(); ?>">
           <div class="col-md-6 form-line">
               <div class="form-group col-md-6">
                 <label>Pseudo</label>

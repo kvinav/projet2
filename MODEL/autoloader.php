@@ -6,7 +6,7 @@ class Autoloader
 
 	static function autoload($class_name)
 	{
-		require '../MODEL/' . strtolower($class_name) . '.php';
+		require '../MODEL/' . ucfirst(strtolower($class_name)) . '.php';
 
 	}
 
