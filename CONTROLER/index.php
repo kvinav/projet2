@@ -12,6 +12,6 @@ $posts = $manager->getList();
 
 
 
-include('../VIEW/accueil.php');
+include('../VIEW/home.php');
 
 ?>

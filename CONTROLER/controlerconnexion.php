@@ -19,6 +19,7 @@ if (isset($_POST['user']) && isset($_POST['password']) && $_POST['user'] == $fir
 {
 	$_SESSION['user'] = $_POST['user'];
 	$_SESSION['password'] = $_POST['password'];
+	
 	require_once('../VIEW/administration.php');
 }
 
@@ -27,7 +28,7 @@ else if (isset($_POST['user']) && isset($_POST['password']))
 	
 	require_once('../VIEW/administration.php');
 }
-else if (isset($_SESSION['user']) && isset($_SESSION['password']) && isset($_GET['id']) && isset($_GET['supprimersignalement'])) 
+else if (isset($_SESSION['user']) && isset($_SESSION['password']) && isset($_GET['id']) && isset($_GET['deletereport'])) 
 {
 	$commentobj->setId($_GET['id']);
 	$managercomment->deletereport($commentobj);
@@ -43,5 +44,5 @@ else if (isset($_GET['connected']) == 1)
 }
 else
 {
-	include('../VIEW/connection.php');
+	include('../VIEW/connexion.php');
 }

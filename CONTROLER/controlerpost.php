@@ -17,7 +17,7 @@ $answer = new Answers();
 $manageranswers = new ManagerAnswers($bdd);
 
 
-if (isset($_GET['idcom']) && isset($_GET['signaler']))
+if (isset($_GET['idcom']) && isset($_GET['report']))
 {	
 
 	$commentunique = $managercomment->getUnique($_GET['idcom']);
@@ -26,10 +26,10 @@ if (isset($_GET['idcom']) && isset($_GET['signaler']))
 
 }
 
-if (isset($_POST['pseudo']) && isset($_POST['commentaire']))
+if (isset($_POST['pseudo']) && isset($_POST['comment']))
 {
 	$commentobj->setPseudo($_POST['pseudo']);
-	$commentobj->setComment($_POST['commentaire']);
+	$commentobj->setComment($_POST['comment']);
 	$commentobj->setId_post($_GET['id']);
 
 
