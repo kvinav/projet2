@@ -23,7 +23,7 @@ class Database
 	    
 	    return $req;
 	}
-	
+
 	public function exec($exec)
 	{
 		$req = $this->pdo->exec($exec);

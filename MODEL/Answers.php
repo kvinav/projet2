@@ -70,7 +70,7 @@ class Answers
 		}
 	}
 
-	public function getAnsweranswer()
+	public function getAnswer()
 	{
 		return $this->answer;
 	}
