@@ -2,13 +2,13 @@
 require '../APP/bootstrap.php';
 
 // Création des objets $billets et $manager
-$billetobject = new Billets();
+$postobject = new Posts();
 
-$manager = new ManagerBillets($bdd);
+$manager = new ManagerPosts($bdd);
 
 
 //Renvoie la liste complète de tous les billets
-$billets = $manager->getList();
+$posts = $manager->getList();
 
 
 

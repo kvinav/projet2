@@ -1,18 +1,18 @@
 <?php
 require '../APP/bootstrap.php';
 // Création des objets $billet et $manager
-$billet = new Billets();
+$post = new Posts();
 
-$manager = new ManagerBillets($bdd);
+$manager = new ManagerPosts($bdd);
 
 //Création des objets $commentaire et $managercommentaire
-$commentaireobj = new Commentaires();
+$commentobj = new Comments();
 
-$managercommentaire = new ManagerCommentaires($bdd);
+$managercomment = new ManagerComments($bdd);
 
 
-	$billetunique = $manager->getUnique($_GET['id']);
-	$listcommentaire = $managercommentaire->getListadmin();
+	$postunique = $manager->getUnique($_GET['id']);
+	$listcomment = $managercomment->getListadmin();
 
 if (!isset($_SESSION['user']) OR !isset($_SESSION['password']))
 {
@@ -21,14 +21,14 @@ if (!isset($_SESSION['user']) OR !isset($_SESSION['password']))
 
 if (isset($_GET['id']) && isset($_GET['supprimercom']))
 {
-	$commentaireobj->setId($_GET['id']);
-	$managercommentaire->delete($commentaireobj);
+	$commentobj->setId($_GET['id']);
+	$managercomment->delete($commentobj);
 	include_once('../VIEW/adminbillet.php');
 }
 elseif (isset($_GET['id']) && isset($_GET['supprimerbill'])) 
 {
-	$billet->setId($_GET['id']);
-	$manager->delete($billet);
+	$post->setId($_GET['id']);
+	$manager->delete($post);
 
 	header('Location: ../CONTROLER/controleradminliste.php');
 }

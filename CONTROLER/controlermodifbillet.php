@@ -2,12 +2,12 @@
 require '../APP/bootstrap.php';
 
 // Création des objets $billets et $manager
-$billet = new Billets();
+$post = new Posts();
 
-$manager = new ManagerBillets($bdd);
+$manager = new ManagerPosts($bdd);
 
 
-	$billetunique = $manager->getUnique($_GET['id']);
+	$postunique = $manager->getUnique($_GET['id']);
 
 if (!isset($_SESSION['user']) OR !isset($_SESSION['password']))
 {
@@ -18,11 +18,11 @@ if (!isset($_SESSION['user']) OR !isset($_SESSION['password']))
 if (isset($_SESSION['user']) && isset($_SESSION['password']) && isset($_POST['titre']) && isset($_POST['billet']))
 {	
 	
-	$billet->setId($_GET['id']);
-	$billet->setTitre($_POST['titre']);
-	$billet->setBillet($_POST['billet']);
+	$post->setId($_GET['id']);
+	$post->setTitle($_POST['titre']);
+	$post->setPost($_POST['billet']);
 
-	$manager->update($billet);
+	$manager->update($post);
 
 	header('Location: ../CONTROLER/controleradminliste.php');
 	

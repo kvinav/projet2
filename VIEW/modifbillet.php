@@ -15,17 +15,17 @@
       <div class="row">
         <div class="col-md-12">
   <div class="container">
-        <form method="post" action="../CONTROLER/controlermodifbillet.php?id=<?php echo $billetunique->getId(); ?>">
+        <form method="post" action="../CONTROLER/controlermodifbillet.php?id=<?php echo $postunique->getId(); ?>">
           <div class="col-md-6 form-line">
               <div class="form-group">
                 <label for="titre">Titre</label>
-                <input type="text" class="form-control" name="titre" id="titre" value="<?php echo $billetunique->getTitre(); ?>">
+                <input type="text" class="form-control" name="titre" id="titre" value="<?php echo $postunique->getTitle(); ?>">
               </div>
             </div>
             <div class="col-md-10">
               <div class="form-group">
                 <label for="description">Billet</label>
-                <textarea class="form-control" rows="25" cols="80" id="billet" name="billet"><?php echo $billetunique->getBillet(); ?></textarea>
+                <textarea class="form-control" rows="25" cols="80" id="billet" name="billet"><?php echo $postunique->getPost(); ?></textarea>
               </div>
               <div>
 

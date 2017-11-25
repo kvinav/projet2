@@ -15,21 +15,21 @@
       <div class="row">
         <div class="col-md-12">
           <!-- small box -->
-        <?php foreach ($billets as $billet) { ?>
+        <?php foreach ($posts as $post) { ?>
         <div class="lis-group">
-          <div class="list-group-item"><h3><strong><?php echo $billet->getTitre(); ?></strong></h3>
-          <?php if ($billet->getDatebillet() == $billet->getDatemodif()) { 
+          <div class="list-group-item"><h3><strong><?php echo $post->getTitle(); ?></strong></h3>
+          <?php if ($post->getDatepost() == $post->getDatemodif()) { 
                    
-                  ?> Publié le  <?php echo $billet->getDatebillet(); ?> <?php
+                  ?> Publié le  <?php echo $post->getDatepost(); ?> <?php
               }
               
               else {
-                  ?> Publié le  <?php echo $billet->getDatebillet(); ?> <br> Mise-à-jour le <?php echo $billet->getDatemodif(); ?> </p>
+                  ?> Publié le  <?php echo $post->getDatepost(); ?> <br> Mise-à-jour le <?php echo $post->getDatemodif(); ?> </p>
              <?php } ?>
 
-              <p><?php echo substr($billet->getBillet(), 0, 100); ?>(...)</p>
+              <p><?php echo substr($post->getPost(), 0, 100); ?>(...)</p>
 
-              <a href="../CONTROLER/controleradminbillet.php?id=<?php echo $billet->getId(); ?>"><input type="submit" class="btn btn-default submit" value="Gérer"></a>
+              <a href="../CONTROLER/controleradminbillet.php?id=<?php echo $post->getId(); ?>"><input type="submit" class="btn btn-default submit" value="Gérer"></a>
            </div>  
         </div><br>
         <?php } ?>

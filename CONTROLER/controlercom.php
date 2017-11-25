@@ -1,36 +1,36 @@
 <?php
 require '../APP/bootstrap.php';
 
-$commentaire = new Commentaires();
+$comment = new Comments();
 
-$manager = new ManagerCommentaires($bdd);
+$manager = new ManagerComments($bdd);
 
-$reponse = new Reponses();
+$answer = new Answers();
 
-$managerreponses = new ManagerReponses($bdd);
+$manageranswers = new ManagerAnswers($bdd);
 
 
 
 if (isset($_GET['id']) && isset($_POST['pseudo']) && isset($_POST['reponse']))
 {
-	$reponse->setPseudo($_POST['pseudo']);
-	$reponse->setReponse($_POST['reponse']);
-	$reponse->setId_commentaire($_GET['id']);
+	$answer->setPseudo($_POST['pseudo']);
+	$answer->setAnswer($_POST['reponse']);
+	$answer->setId_comment($_GET['id']);
 
-	$managerreponses->add($reponse);
-$commentaireunique = $manager->getUnique($_GET['id']);
-$listreponse = $managerreponses->getList();
+	$manageranswers->add($answer);
+$commentunique = $manager->getUnique($_GET['id']);
+$listanswer = $manageranswers->getList();
 
 	include_once('../VIEW/commentaires.php');
 }
 if (isset($_GET['idrep']) && isset($_GET['signaler']))
 {	
 
-	$reponseunique = $managerreponses->getUnique($_GET['idrep']);
+	$answerunique = $manageranswers->getUnique($_GET['idrep']);
 
-	$managerreponses->signaler($reponseunique);
-	$commentaireunique = $manager->getUnique($_GET['id']);
-$listreponse = $managerreponses->getList();
+	$manageranswers->report($answerunique);
+	$commentunique = $manager->getUnique($_GET['id']);
+$listanswer = $manageranswers->getList();
 
 	include_once('../VIEW/commentaires.php');
 
@@ -39,8 +39,8 @@ $listreponse = $managerreponses->getList();
 
 else if (isset($_GET['id']))
 {
-    $commentaireunique = $manager->getUnique($_GET['id']);
-$listreponse = $managerreponses->getList();
+    $commentunique = $manager->getUnique($_GET['id']);
+$listanswer = $manageranswers->getList();
 
 	include_once('../VIEW/commentaires.php');
 }

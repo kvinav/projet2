@@ -20,16 +20,15 @@ class ManagerAdmin
 	 public function getUnique()
     {
        
-      $req = $this->bdd->prepare('SELECT * FROM admin WHERE id = :id');
-      $req->bindValue(':id', '1');
-      $req->execute();
+      $req = $this->bdd->query('SELECT * FROM admin WHERE id = ?', [1]);
+      
       $req->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Admin');
       $firstadmin = $req->fetch();
       return $firstadmin;
 
     }
 
-	public function setBDD(PDO $bdd)
+	public function setBDD($bdd)
 	{
 		$this->bdd = $bdd;
 	}
