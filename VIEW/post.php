@@ -31,7 +31,7 @@
           <li class="list-group-item"><p><strong><?php echo $comment->getPseudo(); ?></strong> - <em>le <?php echo $comment->getDatecomment(); ?></em></p>
 
               <p><?php echo $comment->getComment(); ?></p>
-              <p> <a href="../CONTROLER/controlerpost.php?id=<?php echo $postunique->getId(); ?>&idcom=<?php echo $comment->getId(); ?>&signaler"><input type="submit" class="btn btn-danger submit" value="SIGNALER"></a>
+              <p> <a href="../CONTROLER/controlerpost.php?id=<?php echo $postunique->getId(); ?>&idcom=<?php echo $comment->getId(); ?>&report"><input type="submit" class="btn btn-danger submit" value="SIGNALER"></a>
              <a href="../CONTROLER/controlercom.php?id=<?php echo $comment->getId(); ?>"><input type="submit" class="btn btn-default submit" value="Voir les réponses / Répondre"></a></p>
                 <p><?php if ($comment->getReport() >= 1 ) { echo '<div class="list-group-item list-group-item-danger"><em>Ce commentaire a été signalé</em></div>'; } ?></p> </li>
                
@@ -53,7 +53,7 @@
             <div class="col-md-12">
               <div class="form-group">
                 <label>Commentaire</label>
-                <textarea  class="form-control" id="commentaire" name="commentaire" ></textarea>
+                <textarea  class="form-control" id="comment" name="comment" ></textarea>
               </div>
               <div>
 

@@ -45,7 +45,7 @@
       // type de mode
       mode : "exact", 
       // id ou class, des textareas
-      elements : "billet", 
+      elements : "post", 
       // en mode avancé, cela permet de choisir les plugins
       theme : "advanced", 
       // liste des plugins
@@ -134,19 +134,19 @@
           </a>
         </li>
         <li>
-          <a href="../CONTROLER/controleradminliste.php">
+          <a href="../CONTROLER/controleradminlist.php">
             <i class="fa fa-list"></i>
             <span>Mes billets</span>
           </a>
         </li>
         <li>
-          <a href="../CONTROLER/controlercomliste.php">
+          <a href="../CONTROLER/controlercomlist.php">
             <i class="fa fa-comments"></i>
             <span>Tous les commentaires</span>
           </a>
         </li>
         <li>
-          <a href="../CONTROLER/controlerajoutbillet.php">
+          <a href="../CONTROLER/controleraddpost.php">
             <i class="fa fa-pencil"></i> <span>Créer un billet</span>
           </a>
         </li>
@@ -157,7 +157,7 @@
           </a>
         </li>
         <li>
-          <a href="../CONTROLER/controlerdeconnexion.php">
+          <a href="../CONTROLER/controlerdisconnexion.php">
             <i class="fa fa-sign-out"></i>
             <span>Déconnexion</span>
           </a>

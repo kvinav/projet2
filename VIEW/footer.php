@@ -5,7 +5,7 @@
             
             <p class="copyright text-muted">Copyright &copy; avignonkevin.com/projet2 2017<br>
                <a href="../CONTROLER/controlerconnexion.php">Administration du site</a><br>
-             <a href="../VIEW/mentions.php">Mentions légales</a></p>
+             <a href="../VIEW/notice.php">Mentions légales</a></p>
           </div>
         </div>
       </div>
