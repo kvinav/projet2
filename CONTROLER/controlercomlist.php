@@ -4,7 +4,7 @@ require '../APP/bootstrap.php';
 
 $commentobj = new Comments();
 
-$managercomment = new ManagerComments($bdd);
+$managercomment = new CommentsManager($bdd);
 
 $listcomment = $managercomment->getListtotal();
 

@@ -6,13 +6,11 @@ date_default_timezone_set("Europe/Paris");
 
 
 require 'config.php';
-require '../MODEL/Autoloader.php';
-Autoloader::register();
-require '../vendor/autoload.php';
-    
-    $loader = new Twig_Loader_Filesystem('../VIEW'); // Dossier contenant les templates
-    $twig = new Twig_Environment($loader, array('cache' => false));
+
+spl_autoload_register('app_autoload'); function app_autoload($class)
+{ 
+	require "../MODEL/$class.php"; 
+}
 
 
-
-$bdd = APP::getDatabase();
+$bdd = App::getDatabase();

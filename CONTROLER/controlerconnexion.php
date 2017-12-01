@@ -4,13 +4,13 @@ require '../APP/bootstrap.php';
 $admin = new Admin();
 
 
-$manageradmin = new ManagerAdmin($bdd);
+$manageradmin = new AdminManager($bdd);
 
 $firstadmin = $manageradmin->getUnique();
 
 $commentobj = new Comments();
 
-$managercomment = new ManagerComments($bdd);
+$managercomment = new CommentsManager($bdd);
 
 $listcomment = $managercomment->getListreports();
 

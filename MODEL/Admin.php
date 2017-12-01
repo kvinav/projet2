@@ -26,21 +26,6 @@ class Admin
 		}
 	}
 
-	public function setId($id)
-	{
-		$id = (int) $id;
-
-		if ($id > 0)
-		{
-			$this->id = $id;
-		}
-	}
-
-	public function getId()
-	{
-		return $this->id;
-	}
-
 	public function setUser($user)
 	{
 		if (is_string($user))

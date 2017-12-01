@@ -3,13 +3,13 @@ require '../APP/bootstrap.php';
 
 $comment = new Comments();
 
-$manager = new ManagerComments($bdd);
+$manager = new CommentsManager($bdd);
 
 $post = new Posts();
 
 $answer = new Answers();
 
-$manageranswers = new ManagerAnswers($bdd);
+$manageranswers = new AnswersManager($bdd);
 
 
 

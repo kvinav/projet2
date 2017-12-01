@@ -4,7 +4,7 @@ require '../APP/bootstrap.php';
 // Création des objets $billets et $manager
 $post = new Posts();
 
-$manager = new ManagerPosts($bdd);
+$manager = new PostsManager($bdd);
 
 
 	$postunique = $manager->getUnique($_GET['id']);

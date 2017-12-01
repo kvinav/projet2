@@ -4,17 +4,17 @@ require '../APP/bootstrap.php';
 // Création des objets $billet et $manager
 $post = new Posts();
 
-$manager = new ManagerPosts($bdd);
+$manager = new PostsManager($bdd);
 
 //Création des objets $commentaire et $managercommentaire
 $commentobj = new Comments();
 
-$managercomment = new ManagerComments($bdd);
+$managercomment = new CommentsManager($bdd);
 
 
 $answer = new Answers();
 
-$manageranswers = new ManagerAnswers($bdd);
+$manageranswers = new AnswersManager($bdd);
 
 
 if (isset($_GET['idcom']) && isset($_GET['report']))

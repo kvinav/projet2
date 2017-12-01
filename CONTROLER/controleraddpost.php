@@ -3,7 +3,7 @@ require '../APP/bootstrap.php';
 
 $postobject = new Posts();
 
-$manager = new ManagerPosts($bdd);
+$manager = new PostsManager($bdd);
 
 if (!isset($_SESSION['user']) OR !isset($_SESSION['password']))
 {
