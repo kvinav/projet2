@@ -26,7 +26,7 @@
                   ?> le  <?php echo $postunique->getDatepost(); ?> <br> Mise-à-jour le <?php echo $postunique->getDatemodif(); ?> </p>
              <?php } ?>
 
-             <a href="../CONTROLER/controlerupdatepost.php?id=<?php echo $postunique->getId(); ?>&update"><input type="submit" class="btn btn-primary submit" value="Modifier"></a>  <a href="../CONTROLER/controleradminpost.php?id=<?php echo $postunique->getId(); ?>&deletepost"><input type="submit" class="btn btn-danger submit" value="Supprimer" OnClick="return confirm('Voulez-vous vraiment supprimer ?');"></a> <br><br><br>
+             <a href="../index.php?action=updatePost&id=<?php echo $postunique->getId(); ?>"><input type="submit" class="btn btn-primary submit" value="Modifier"></a>  <a href="../index.php?action=postAdmin&id=<?php echo $postunique->getId(); ?>&deletepost"><input type="submit" class="btn btn-danger submit" value="Supprimer" OnClick="return confirm('Voulez-vous vraiment supprimer ?');"></a> <br><br><br>
 
         <?php foreach ($listcomment as $comment) { ?>
         <ul class="lis-group">
@@ -35,8 +35,8 @@
               <p><?php echo $comment->getComment();  ?></p>
               <p> <?php if ($comment->getReport() >= 1) { echo '<div class="list-group-item list-group-item-danger"><em>Ce commentaire a été signalé '; echo $comment->getReport(); echo ' fois</em></div>'; } ?> </p>
 
-              <a href="../CONTROLER/controleradminpost.php?id=<?php echo $comment->getId_billet(); ?>&idcom=<?php echo $comment->getId(); ?>&deletecom"><input type="submit" class="btn btn-danger submit" value="Supprimer" OnClick="return confirm('Voulez-vous vraiment supprimer ?');"></a>
-              <a href="../CONTROLER/controleradmincom.php?id=<?php echo $comment->getId(); ?>"><input type="submit" class="btn btn-default submit" value="Voir les réponses / Répondre"></a>
+              <a href="../index.php?action=postAdmin&id=<?php echo $comment->getId_billet(); ?>&idcom=<?php echo $comment->getId(); ?>&deletecom"><input type="submit" class="btn btn-danger submit" value="Supprimer" OnClick="return confirm('Voulez-vous vraiment supprimer ?');"></a>
+              <a href="../index.php?action=commentAdmin&id=<?php echo $comment->getId(); ?>"><input type="submit" class="btn btn-default submit" value="Voir les réponses / Répondre"></a>
              
         </ul>
         <?php } ?>

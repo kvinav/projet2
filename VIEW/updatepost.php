@@ -15,7 +15,7 @@
       <div class="row">
         <div class="col-md-12">
   <div class="container">
-        <form method="post" action="../CONTROLER/controlerupdatepost.php?id=<?php echo $postunique->getId(); ?>">
+        <form method="post" action="../index.php?action=updatePost&id=<?php echo $postunique->getId(); ?>">
           <div class="col-md-6 form-line">
               <div class="form-group">
                 <label for="titre">Titre</label>

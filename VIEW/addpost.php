@@ -14,7 +14,7 @@
       <div class="row">
         <div class="col-md-12">
   <div class="container">
-        <form method="post" action="../CONTROLER/controleraddpost.php">
+        <form method="post" action="../index.php?action=addPost">
           <div class="col-md-6 form-line">
               <div class="form-group">
                 <label for="titre">Titre</label>

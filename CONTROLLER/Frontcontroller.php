@@ -2,21 +2,15 @@
 
 require '../APP/bootstrap.php';
 
-class FrontController // Contient mes actuels fichiers : controlercom; controlerpost; index;
+class FrontController extends Controller // Contient mes actuels fichiers : controlercom; controlerpost; index;
 					// controlerconnexion; controlerdisconnexion.
 
 {
 
-	public function getlistPosts() {
+	public function getListPosts() {
 
 	
-		$postobject = new Posts();
-
-		$manager = new PostsManager($bdd);
-
-		$posts = $manager->getList();
-
-
+		parent::getListPosts();
 
 		require('../VIEW/home.php');
 
@@ -25,13 +19,7 @@ class FrontController // Contient mes actuels fichiers : controlercom; controler
 	public function getPost() {
 
 
-		$manager = new PostsManager($bdd);
-
-		$postunique = $manager->getUnique($_GET['id']);
-
-		$managercomment = new CommentsManager($bdd);
-
-		$listcomment = $managercomment->getList();
+		parent::getPost();
 
 		require('../VIEW/post.php');
 
@@ -40,12 +28,7 @@ class FrontController // Contient mes actuels fichiers : controlercom; controler
 	public function getComment() {
 
 	
-		$managercomment = new CommentsManager($bdd);
-
-		$manageranswers = new AnswersManager($bdd);
-
-		$commentunique = $managercomment->getUnique($_GET['id']);
-		$listanswer = $manageranswers->getList();
+		parent::getComment();
 
 		require('../VIEW/comments.php');
 
@@ -53,16 +36,17 @@ class FrontController // Contient mes actuels fichiers : controlercom; controler
 
 	public function addComment() {
 
-		$commentobj->setPseudo($_POST['pseudo']);
-		$commentobj->setComment($_POST['comment']);
-		$commentobj->setId_post($_GET['id']);
+		$comment->setPseudo($_POST['pseudo']);
+		$comment->setComment($_POST['comment']);
+		$comment->setId_post($_GET['id']);
 
+		$postsmanager = new PostsManager($bdd);
+		$commentsmanager = new CommentsManager($bdd);
 
+		$commentsmanager->add($comment);
 
-		$managercomment->add($commentobj);
-
-		$postunique = $manager->getUnique($_GET['id']);
-		$listcomment = $managercomment->getList();
+		$postunique = $postsmanager->getUnique($_GET['id']);
+		$listcomment = $commentsmanager->getList();
 
 		require('../VIEW/post.php');
 
@@ -71,16 +55,16 @@ class FrontController // Contient mes actuels fichiers : controlercom; controler
 	public function reportComment() {
 
 
-		$managercomment = new CommentsManager($bdd);
-		$commentunique = $managercomment->getUnique($_GET['idcom']);
+		$commentsmanager = new CommentsManager($bdd);
+		$commentunique = $commentsmanager->getUnique($_GET['idcom']);
 
-		$managercomment->report($commentunique);
+		$commentsmanager->report($commentunique);
 
-		$manager = new PostsManager($bdd);
+		$postsmanager = new PostsManager($bdd);
 
-		$postunique = $manager->getUnique($_GET['id']);
+		$postunique = $postsmanager->getUnique($_GET['id']);
 
-		$listcomment = $managercomment->getList();
+		$listcomment = $commentsmanager->getList();
 
 
 		require('../VIEW/post.php');
@@ -91,17 +75,7 @@ class FrontController // Contient mes actuels fichiers : controlercom; controler
 	
 	public function addAnswer() {
 
-		$answer = new Answers();
-
-		$manageranswers = new AnswersManager($bdd);
-
-		$answer->setPseudo($_POST['pseudo']);
-		$answer->setAnswer($_POST['answer']);
-		$answer->setId_comment($_GET['id']);
-
-		$manageranswers->add($answer);
-		$commentunique = $manager->getUnique($_GET['id']);
-		$listanswer = $manageranswers->getList();
+		parent::addAnswer();
 
 		require('../VIEW/comments.php');
 
@@ -111,15 +85,15 @@ class FrontController // Contient mes actuels fichiers : controlercom; controler
  
 	public function reportAnswer() {
 
-		$manager = new CommentsManager($bdd);
+		$commentsmanager = new CommentsManager($bdd);
 
-		$manageranswers = new AnswersManager($bdd);
+		$answersmanager = new AnswersManager($bdd);
 
-		$answerunique = $manageranswers->getUnique($_GET['idrep']);
+		$answerunique = $answersmanager->getUnique($_GET['idrep']);
 
-		$manageranswers->report($answerunique);
-		$commentunique = $manager->getUnique($_GET['id']);
-		$listanswer = $manageranswers->getList();
+		$answersmanager->report($answerunique);
+		$commentunique = $commentsmanager->getUnique($_GET['id']);
+		$listanswer = $answersmanager->getList();
 
 		require('../VIEW/comments.php');
 
@@ -127,8 +101,17 @@ class FrontController // Contient mes actuels fichiers : controlercom; controler
 
 	}
 
-	public function getAdmin() {
+	public function about() {
+
+		require('../VIEW/about.php');
 
 	}
 
+	public function notice() {
+
+		require('../VIEW/notice.php');
+
+	}
+
+	
 }

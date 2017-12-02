@@ -27,7 +27,7 @@
           <div class="post-preview">
 
             <!-- Renvoie vers un post en fonction de l'id  -->
-            <a href="../CONTROLER/controlerpost.php?id=<?php echo $post->getId(); ?>">
+            <a href="../index.php?action=post&id=<?php echo $post->getId(); ?>">
 
               <h2 class="post-title">
                 <?php echo $post->getTitle(); ?>
@@ -37,7 +37,7 @@
               </h3>
             </a>
             <p class="post-meta">Posté par
-              <a href="about.php"><?php echo $post->getAuthor(); ?></a>
+              <a href="../index.php?action=about"><?php echo $post->getAuthor(); ?></a>
               <?php if ($post->getDatepost() == $post->getDatemodif()) { 
                    
                   ?> le  <?php echo $post->getDatepost(); ?> <?php

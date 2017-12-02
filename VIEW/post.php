@@ -31,8 +31,8 @@
           <li class="list-group-item"><p><strong><?php echo $comment->getPseudo(); ?></strong> - <em>le <?php echo $comment->getDatecomment(); ?></em></p>
 
               <p><?php echo $comment->getComment(); ?></p>
-              <p> <a href="../CONTROLER/controlerpost.php?id=<?php echo $postunique->getId(); ?>&idcom=<?php echo $comment->getId(); ?>&report"><input type="submit" class="btn btn-danger submit" value="SIGNALER"></a>
-             <a href="../CONTROLER/controlercom.php?id=<?php echo $comment->getId(); ?>"><input type="submit" class="btn btn-default submit" value="Voir les réponses / Répondre"></a></p>
+              <p> <a href="../index.php?action=post&id=<?php echo $postunique->getId(); ?>&idcom=<?php echo $comment->getId(); ?>&report"><input type="submit" class="btn btn-danger submit" value="SIGNALER"></a>
+             <a href="../index.php?action=comment&id=<?php echo $comment->getId(); ?>"><input type="submit" class="btn btn-default submit" value="Voir les réponses / Répondre"></a></p>
                 <p><?php if ($comment->getReport() >= 1 ) { echo '<div class="list-group-item list-group-item-danger"><em>Ce commentaire a été signalé</em></div>'; } ?></p> </li>
                
                 
@@ -42,7 +42,7 @@
 
            <div class="container">
             <p><strong>Laissez un commentaire</strong></p><br>
-        <form method="post" action="../CONTROLER/controlerpost.php?id=<?php echo $postunique->getId(); ?>">
+        <form method="post" action="../index.php?action=post?id=<?php echo $postunique->getId(); ?>">
           <div class="col-md-6 form-line">
               <div class="form-group">
                 <label>Pseudo</label>

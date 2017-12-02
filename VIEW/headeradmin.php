@@ -129,35 +129,35 @@
       <ul class="sidebar-menu">
         <li class="header">Menu</li>
         <li>
-          <a href="../CONTROLER/controlerconnexion.php?connected=1">
+          <a href="../index.php?action=admin">
             <i class="fa fa-dashboard"></i> <span>Tableau de bord</span>
           </a>
         </li>
         <li>
-          <a href="../CONTROLER/controleradminlist.php">
+          <a href="../index.php?action=listPostsAdmin">
             <i class="fa fa-list"></i>
             <span>Mes billets</span>
           </a>
         </li>
         <li>
-          <a href="../CONTROLER/controlercomlist.php">
+          <a href="../index.php?action=listComments">
             <i class="fa fa-comments"></i>
             <span>Tous les commentaires</span>
           </a>
         </li>
         <li>
-          <a href="../CONTROLER/controleraddpost.php">
+          <a href="../index.php?action=addPost">
             <i class="fa fa-pencil"></i> <span>Créer un billet</span>
           </a>
         </li>
         <li>
-          <a href="../CONTROLER/index.php" onclick="window.open(this.href); return false;">
+          <a href="../index.php?action=listPosts" onclick="window.open(this.href); return false;">
             <i class="fa fa-home"></i>
             <span>Mon site</span>
           </a>
         </li>
         <li>
-          <a href="../CONTROLER/controlerdisconnexion.php">
+          <a href="../index.php?action=disconnexion">
             <i class="fa fa-sign-out"></i>
             <span>Déconnexion</span>
           </a>

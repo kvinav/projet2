@@ -21,8 +21,8 @@
             le  <?php echo $commentunique->getDatecomment(); ?> <br><br> 
              
 
-             <a href="../CONTROLER/controleradmincom.php?id=<?php echo $commentunique->getId(); ?>&deletecom"><input type="submit" class="btn btn-danger submit" value="Supprimer" OnClick="return confirm('Voulez-vous vraiment supprimer ?');"></a>
-             <a href="../CONTROLER/controleradminpost.php?id=<?php echo $commentunique->getId_post(); ?>"><input type="submit" class="btn btn-default submit" value="Voir le billet associé"></a> <br><br><br>
+             <a href="../index.php?action=commentAdmin&id=<?php echo $commentunique->getId(); ?>&deletecom"><input type="submit" class="btn btn-danger submit" value="Supprimer" OnClick="return confirm('Voulez-vous vraiment supprimer ?');"></a>
+             <a href="../index.php?action=postAdmin&id=<?php echo $commentunique->getId_post(); ?>"><input type="submit" class="btn btn-default submit" value="Voir le billet associé"></a> <br><br><br>
               </div> <br>
          
            <div class="col-md-10 col-md-offset-1">
@@ -32,9 +32,9 @@
 
               <p><?php echo $answer->getAnswer();  ?></p>
               <p> <?php if ($answer->getReport() >= 1) { echo '<div class="list-group-item list-group-item-danger"><em>Cette réponse a été signalée '; echo $answer->getReport(); echo ' fois</em></div>';
-               echo '<a href="../CONTROLER/controleradmincom.php?idrep='; echo $answer->getId(); echo '&deletereport=0&id='; echo $commentunique->getId(); echo '"><input type="submit" class="btn btn-default submit" value="Supprimer les signalements" OnClick="return confirm(\'Voulez-vous vraiment supprimer les signalements ?\');"></a>';} ?> </p>
+               echo '<a href="../index.php?action=commentAdmin&idrep='; echo $answer->getId(); echo '&deletereport=0&id='; echo $commentunique->getId(); echo '"><input type="submit" class="btn btn-default submit" value="Supprimer les signalements" OnClick="return confirm(\'Voulez-vous vraiment supprimer les signalements ?\');"></a>';} ?> </p>
 
-              <a href="../CONTROLER/controleradmincom.php?id=<?php echo $commentunique->getId(); ?>&idrep=<?php echo $answer->getId(); ?>&deleteanswer"><input type="submit" class="btn btn-danger submit" value="Supprimer" OnClick="return confirm('Voulez-vous vraiment supprimer ?');"></a>
+              <a href="../index.php?action=commentAdmin&id=<?php echo $commentunique->getId(); ?>&idrep=<?php echo $answer->getId(); ?>&deleteanswer"><input type="submit" class="btn btn-danger submit" value="Supprimer" OnClick="return confirm('Voulez-vous vraiment supprimer ?');"></a>
              
         </ul>
         <?php } ?>
@@ -45,7 +45,7 @@
           
           <br><br>
            
-        <form method="post" action="../CONTROLER/controleradmincom.php?id=<?php echo $commentunique->getId(); ?>">
+        <form method="post" action="../index.php?action=commentAdmin&id=<?php echo $commentunique->getId(); ?>">
              <br><br><label class="col-md-12"><strong>Répondre au commentaire</strong></label>
           <div class="col-md-6 form-line">
               <div class="form-group col-md-6">

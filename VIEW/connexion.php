@@ -19,7 +19,7 @@
 
 
     <div class="container">
-        <form method="post" action="../CONTROLER/controlerconnexion.php">
+        <form method="post" action="../index.php?action=admin">
           <div class="col-md-6 form-line">
               <div class="form-group">
                 <label for="titre">Nom d'utilisateur</label>

@@ -28,7 +28,7 @@
             le  <?php echo $commentunique->getDatecomment(); ?> <br><br> 
              
     <p><?php if ($commentunique->getReport() >= 1 ) { echo '<div class="list-group-item list-group-item-danger"><em>Ce commentaire a été signalé</em></div>'; } ?></p> </li>
-            <a href="../CONTROLER/controlerpost.php?id=<?php echo $commentunique->getId_post(); ?>"><input type="submit" class="btn btn-default" value="Revenir au billet"></a>
+            <a href="../index.php?action=post&id=<?php echo $commentunique->getId_post(); ?>"><input type="submit" class="btn btn-default" value="Revenir au billet"></a>
             
             </div> <br>
            <div class="col-md-10 col-md-offset-2">
@@ -37,7 +37,7 @@
           <li class="list-group-item"><p><strong><?php echo $answer->getPseudo(); ?></strong> - <em>le <?php echo $answer->getDateanswer(); ?></em></p>
 
               <p><?php echo $answer->getAnswer();  ?></p>
-              <p> <a href="../CONTROLER/controlercom.php?idrep=<?php echo $answer->getId(); ?>&id=<?php echo $commentunique->getId(); ?>&report"><input type="submit" class="btn btn-danger submit" value="SIGNALER"></a></p>
+              <p> <a href="../index.php?action=comment&idrep=<?php echo $answer->getId(); ?>&id=<?php echo $commentunique->getId(); ?>&report"><input type="submit" class="btn btn-danger submit" value="SIGNALER"></a></p>
               <p><?php if ($answer->getReport() >= 1 ) { echo '<div class="list-group-item list-group-item-danger"><em>Cette réponse a été signalée</em></div>'; 
                } ?></p> 
              </li>
@@ -52,7 +52,7 @@
           
           
             <br><p  id="coms"><strong>Répondre au commentaire</strong></strong></p><br>
-        <form method="post" action="../CONTROLER/controlercom.php?id=<?php echo $commentunique->getId(); ?>">
+        <form method="post" action="../index.php?action=comment&id=<?php echo $commentunique->getId(); ?>">
           <div class="col-md-6 form-line">
               <div class="form-group col-md-6">
                 <label>Pseudo</label>

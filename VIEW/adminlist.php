@@ -29,7 +29,7 @@
 
               <p><?php echo substr($post->getPost(), 0, 100); ?>(...)</p>
 
-              <a href="../CONTROLER/controleradminpost.php?id=<?php echo $post->getId(); ?>"><input type="submit" class="btn btn-default submit" value="Gérer"></a>
+              <a href="../index.php?action=postAdmin&id=<?php echo $post->getId(); ?>"><input type="submit" class="btn btn-default submit" value="Gérer"></a>
            </div>  
         </div><br>
         <?php } ?>
