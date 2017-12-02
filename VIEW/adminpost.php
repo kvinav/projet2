@@ -35,7 +35,7 @@
               <p><?php echo $comment->getComment();  ?></p>
               <p> <?php if ($comment->getReport() >= 1) { echo '<div class="list-group-item list-group-item-danger"><em>Ce commentaire a été signalé '; echo $comment->getReport(); echo ' fois</em></div>'; } ?> </p>
 
-              <a href="../CONTROLER/controleradminpost.php?id=<?php echo $comment->getId(); ?>&deletecom"><input type="submit" class="btn btn-danger submit" value="Supprimer" OnClick="return confirm('Voulez-vous vraiment supprimer ?');"></a>
+              <a href="../CONTROLER/controleradminpost.php?id=<?php echo $comment->getId_billet(); ?>&idcom=<?php echo $comment->getId(); ?>&deletecom"><input type="submit" class="btn btn-danger submit" value="Supprimer" OnClick="return confirm('Voulez-vous vraiment supprimer ?');"></a>
               <a href="../CONTROLER/controleradmincom.php?id=<?php echo $comment->getId(); ?>"><input type="submit" class="btn btn-default submit" value="Voir les réponses / Répondre"></a>
              
         </ul>

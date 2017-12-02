@@ -5,26 +5,99 @@ class AdminController // Contient mes actuels fichiers : controleradmin; control
 
 {
 
-public function getlistPosts() {}
 
-public function getPost() {}
 
-public function deletePost() {}
+	public function getListPosts() {
 
-public function addPost() {}
+		$manager = new PostsManager($bdd);
 
-public function updatePost() {}
+		$posts = $manager->getList();
 
-public function getlistComments() {}
+		require('../VIEW/adminlist.php');
 
-public function getComment() {}
+	}
 
-public function deleteComment() {}
+	public function getPost() {
 
-public function deleteReport() {}
 
-public function addAnswer() {}
+		$manager = new PostsManager($bdd);
 
-public function deleteAnswer() {}
+		$managercomment = new CommentsManager($bdd);
+
+
+		$postunique = $manager->getUnique($_GET['id']);
+		$listcomment = $managercomment->getListadmin();
+
+		require('../VIEW/adminpost.php');
+	}
+
+
+	public function deletePost() {
+
+		$post = new Posts();
+
+		$manager = new PostsManager($bdd);
+	
+		$post->setId($_GET['id']);
+		$manager->delete($post);
+
+		require('../VIEW/adminlist.php');
+	}
+
+	public function addPost() {}
+
+	public function updatePost() {}
+
+	public function getListComments() {
+
+
+		$managercomment = new CommentsManager($bdd);
+
+		$listcomment = $managercomment->getListtotal();
+
+		require('../VIEW/comlist.php');
+
+	}
+
+	public function deleteComment() {
+
+		$commentobj = new Comments();
+
+		$managercomment = new CommentsManager($bdd);
+
+		$postunique = $manager->getUnique($_GET['id']);
+		$listcomment = $managercomment->getListadmin();
+		$commentobj->setId($_GET['idcom']);
+		$managercomment->delete($commentobj);
+		require('../VIEW/adminpost.php');
+	}
+
+	public function deleteCommentList() {
+
+
+		$commentobj = new Comments();
+
+		$managercomment = new CommentsManager($bdd);
+		$commentobj->setId($_GET['id']);
+		$managercomment->delete($commentobj);
+		$listcomment = $managercomment->getListtotal();
+
+		require('../VIEW/comlist.php');
+	}
+
+	public function deleteReport() {
+
+		$commentobj = new Comments();
+
+		$managercomment = new CommentsManager($bdd);
+		$commentobj->setId($_GET['id']);
+		$managercomment->deletereport($commentobj);
+		$listcomment = $managercomment->getListtotal();
+
+		require('../VIEW/comlist.php');
+
+	}
+
+	public function deleteAnswer() {}
 
 }

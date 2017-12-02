@@ -6,28 +6,81 @@ $admincontroller = new AdminController();
 $frontcontroller = new FrontController();
 $controller = new Controller();
 
-if (isset($_GET['action'])) { // Si le parametre action est présent
-	if($_GET['action'] == 'listPosts') { // Si sa valeur est listPosts -> on appelle la fonction  getListPosts()
+if (isset($_GET['action'])) { 
+	if($_GET['action'] == 'listPosts') { 
 
-		$controller->getListPosts();
+		$frontcontroller->getListPosts();
 	}
-	elseif ($_GET['action'] == 'post') { // Si sa valeur est post
-		if (isset($_GET['id']) && $_GET['id'] > 0) { // si on a un ID supérieur à O -> on affiche un post unique
-			$controller->getPost();
+	elseif ($_GET['action'] == 'post') { 
+		if (isset($_GET['id']) && $_GET['id'] > 0) { 
+
+			$frontcontroller->getPost();
 		}
-		else { // Sinon on affiche une erreur
+		elseif (isset($_GET['id']) && $_GET['id'] > 0 && isset($_GET['idcom']) && $_GET['idcom'] > 0 && isset($_GET['report'])) { 
+
+			$frontcontroller->reportComment();
+		}
+		elseif (isset($_GET['id']) && $_GET['id'] > 0 && isset($_POST['pseudo']) && isset($_POST['comment']) {
+
+			$frontcontroller->addComment();
+		}
+		else { 
 			echo 'Erreur'; 
 		}
 	}
-	elseif ($_GET['action'] == 'comment') {
-		if (isset($_GET['id']) && $_GET['id'] > 0) {
+	elseif ($_GET['action'] == 'comment') { 
+		if (isset($_GET['id']) && $_GET['id'] > 0) { 
 
-			$controller->getComment();
+			$frontcontroller->getComment();
 		}
-		elseif (isset($_GET['id']) && $_GET['id'] > 0 && isset($_POST['pseudo']) && isset($_POST['answer']) {
+		elseif (isset($_GET['id']) && $_GET['id'] > 0 && isset($_POST['pseudo']) && isset($_POST['answer']) { 
 
-			$controller->addAnswer();
+			$frontcontroller->addAnswer();
 		}
+		elseif (isset($_GET['id']) && $_GET['id'] > 0 && isset($_GET['idrep']) && $_GET['idrep'] > 0 && isset($_GET['report'])) {
+
+			$frontcontroller->reportAnswer();
+
+		}
+		else {
+			echo 'Erreur';
+		}
+	}
+	else if($_GET['action'] == 'listPostsAdmin') { 
+
+		$admincontroller->getListPosts();
+	}
+	elseif ($_GET['action'] == 'postAdmin') { 
+		if (isset($_GET['id']) && $_GET['id'] > 0) { 
+
+			$admincontroller->getPost();
+		}
+		elseif (isset($_GET['id']) && $_GET['id'] > 0 && isset($_GET['deletepost'])) { 
+
+			$admincontroller->deletePost();
+		}
+		elseif (isset($_GET['id']) && $_GET['id'] > 0 && isset($_GET['idcom']) && $_GET['idcom'] > 0 && isset($_GET['deletecom'])) { //
+
+			$admincontroller->deleteComment();
+		}
+		else {
+			echo 'Erreur';
+		}
+	elseif ($_GET['action'] == 'listComments') {
+		if (isset($_GET['id']) && $_GET['id'] > 0 && isset($_GET['deletereport'])) {
+
+			$admincontroller->deleteReport();
+
+		}
+		elseif (isset($_GET['id']) && $_GET['id'] > 0  && isset($_GET['delete'])) {
+
+			$admincontroller->deleteCommentList();
+		}
+		elseif (isset($_GET['get']) == 'list') {
+
+			$admincontroller->getListComments();
+		}
+
 		else {
 			echo 'Erreur';
 		}
@@ -35,7 +88,7 @@ if (isset($_GET['action'])) { // Si le parametre action est présent
 
 }
 
-else { // EN l'absence de paramètres, on affiche la liste des posts ( pour l'url simple projet2/index.php )
+else { 
 	getListPosts();
 }
 
