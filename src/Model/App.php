@@ -1,4 +1,9 @@
 <?php
+
+namespace Blog\MODEL;
+
+use Blog\MODEL\Database;
+
 class App 
 {
 

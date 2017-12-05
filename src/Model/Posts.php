@@ -1,5 +1,8 @@
 <?php
 
+namespace Blog\MODEL;
+
+
 class Posts
 {
 

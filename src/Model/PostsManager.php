@@ -1,5 +1,7 @@
 <?php
 
+namespace Blog\Model;
+
 class PostsManager
 {
 	private $bdd;

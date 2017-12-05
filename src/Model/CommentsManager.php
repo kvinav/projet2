@@ -1,4 +1,7 @@
 <?php
+
+namespace Blog\MODEL;
+
 class CommentsManager
 {
 	private $bdd;

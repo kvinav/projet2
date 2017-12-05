@@ -1,12 +1,18 @@
 <?php
 
-require '../APP/bootstrap.php';
-require('CONTROLLER/Admincontroller.php');
-require('CONTROLLER/Frontcontroller.php');
+require 'APP/config.php';
+require 'vendor/autoload.php';
+
+use Blog\Controller\AdminController;
+use Blog\Controller\FrontController;
+use Blog\Controller\Controller;
+use Blog\Model\App;
+use Blog\Model\Database;
 
 $admincontroller = new AdminController();
 $frontcontroller = new FrontController();
 $controller = new Controller();
+$bdd = Blog\Model\App::getDatabase();
 
 if (isset($_GET['action'])) { 
 	if($_GET['action'] == 'listPosts') { 
@@ -163,7 +169,7 @@ if (isset($_GET['action'])) {
 		}
 		
 	}
-	elseif ($_GET['action'] == 'disconnexion' {
+	elseif ($_GET['action'] == 'disconnexion') {
 
 		$admincontroller->disconnexion();
 
@@ -180,7 +186,7 @@ if (isset($_GET['action'])) {
 }
 
 else { 
-
+	var_dump($bdd);
 	$frontcontroller->getListPosts();
 }
 

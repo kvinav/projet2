@@ -1,6 +1,15 @@
 <?php 
 
-require '../APP/bootstrap.php';
+namespace Blog\Controller;
+
+use Blog\Model\PostsManager;
+use Blog\Model\CommentsManager;
+use Blog\Model\AnswersManager;
+use Blog\Model\AdminManager;
+use Blog\Model\Answers;
+use Blog\Model\Posts;
+use Blog\Model\Comments;
+
 
 class AdminController extends Controller// Contient mes actuels fichiers : controleradmin; controleradmincom;
 						// controleraddpost; controleradminlist; controleradminpost; controlercomlist; controlerupdatepost.
@@ -169,7 +178,7 @@ class AdminController extends Controller// Contient mes actuels fichiers : contr
 
 	}
 
-	include('../VIEW/administration.php');
+
 
 	public function addAnswer() {
 
@@ -198,7 +207,7 @@ class AdminController extends Controller// Contient mes actuels fichiers : contr
 
 	}
 
-	public function deleteReportAnswer { 
+	public function deleteReportAnswer() { 
 
 		$commentsmanager = new CommentsManager($bdd);
 		$answer = new Answers();

@@ -1,4 +1,7 @@
 <?php
+
+namespace Blog\MODEL;
+
 class AnswersManager
 {
 	private $bdd;

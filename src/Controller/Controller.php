@@ -1,6 +1,14 @@
 <?php
 
-require '../APP/bootstrap.php';
+namespace Blog\Controller;
+
+use Blog\Model\PostsManager;
+use Blog\Model\CommentsManager;
+use Blog\Model\AnswersManager;
+use Blog\Model\Answers;
+use Blog\Model\App;
+use Blog\Model\Database;
+
 
 class Controller
 
@@ -11,6 +19,8 @@ class Controller
 		$postsmanager = new PostsManager($bdd);
 
 		$posts = $postsmanager->getList();
+
+		return $posts;
 
 
 	}
@@ -27,7 +37,7 @@ class Controller
 
 	}
 
-	public function getComment {
+	public function getComment() {
 
 		$commentsmanager = new CommentsManager($bdd);
 

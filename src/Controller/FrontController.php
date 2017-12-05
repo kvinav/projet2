@@ -1,6 +1,13 @@
 <?php 
 
-require '../APP/bootstrap.php';
+namespace Blog\Controller;
+
+use Blog\Model\PostsManager;
+use Blog\Model\CommentsManager;
+use Blog\Model\AnswersManager;
+use Blog\Model\Answers;
+use Blog\Model\Posts;
+use Blog\Model\Comments;
 
 class FrontController extends Controller // Contient mes actuels fichiers : controlercom; controlerpost; index;
 					// controlerconnexion; controlerdisconnexion.
