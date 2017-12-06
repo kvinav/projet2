@@ -1,0 +1,17 @@
+{
+    "require": {
+        "phpunit/php-timer": "^1.0",
+        "twbs/bootstrap": "^3.3",
+        "twig/twig": "^2.0",
+        "tinymce/tinymce": "^4.7",
+        "components/font-awesome": "^4.7"
+    },
+
+    "autoload": {
+        "psr-4": {
+            "Blog\\": "src/"
+        }
+    }
+
+    
+}

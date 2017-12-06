@@ -1,0 +1,82 @@
+{% include '../VIEW/header.php %}
+
+
+    <!-- Page Header -->
+   
+    <header class="masthead" style="background-image: url('../VIEW/img/home.jpg')">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="page-heading"><br><br><br>
+              <h1>{{ postunique.title }} </h1><br><br>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          
+          <p> {{ postunique.post }} </p>
+          <p> Publié par <em>{{ postunique.author }} </em><p>
+            <p>Le <em> {{ postunique.datepost }} </em></p><br>
+
+      
+        <h3 id="coms">Commentaires</h3><br>
+        {% for listcomment in comment %}
+        <ol class="lis-group">
+          <li class="list-group-item"><p><strong>{{ comment.pseudo }}</strong> - <em>le {{ comment.datecomment }}</em></p>
+
+              <p>{{ comment.comment }}</p>
+              <p> <a href="../CONTROLER/controlerpost.php?id={{ postunique.id }}&idcom={{ comment.id }}&report"><input type="submit" class="btn btn-danger submit" value="SIGNALER"></a>
+             <a href="../CONTROLER/controlercom.php?id={{ comment.id }}"><input type="submit" class="btn btn-default submit" value="Voir les réponses / Répondre"></a></p>
+                <p>{% if comment.report >= 1 %} 
+                  {{ <div class="list-group-item list-group-item-danger"><em>Ce commentaire a été signalé</em></div> }}
+                  {% endif %}
+                </p> </li>
+               
+                
+        </ol>
+        {% endfor %}
+      
+
+           <div class="container">
+            <p><strong>Laissez un commentaire</strong></p><br>
+        <form method="post" action="../CONTROLER/controlerpost.php?id={{ postunique.id }}">
+          <div class="col-md-6 form-line">
+              <div class="form-group">
+                <label>Pseudo</label>
+                <input type="text" class="form-control" name="pseudo" id="pseudo">
+                <span id="aidePseudo"></span>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Commentaire</label>
+                <textarea  class="form-control" id="comment" name="comment" ></textarea>
+              </div>
+              <div>
+
+                <input type="submit" class="btn btn-default" value="Envoyer">
+              </div>
+              
+          </div>
+        </form>
+      </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <hr>
+
+    <!-- Footer -->
+     {% include '../VIEW/footer.php' %}
+    <script src="../VIEW/js/test.js"></script>
+  </body>
+
+</html>
