@@ -9,6 +9,7 @@ use Blog\Model\AdminManager;
 use Blog\Model\Answers;
 use Blog\Model\Posts;
 use Blog\Model\Comments;
+use Blog\Model\App;
 
 
 class AdminController extends Controller// Contient mes actuels fichiers : controleradmin; controleradmincom;
@@ -16,7 +17,13 @@ class AdminController extends Controller// Contient mes actuels fichiers : contr
 
 {
 
+	private $db;
 
+	public function __construct() {
+
+		$this->db = App::getDatabase();
+
+	}
 
 	public function getListPosts() {
 
@@ -231,20 +238,31 @@ class AdminController extends Controller// Contient mes actuels fichiers : contr
 
 	public function admin() {
 
-		$_SESSION['user'] = $_POST['user'];
-		$_SESSION['password'] = $_POST['password'];
-		
-		session_start();
-
-		$adminmanager = new AdminManager($bdd);
+		$adminmanager = new AdminManager($this->db);
 
 		$firstadmin = $adminmanager->getUnique();
 
-		$commentsmanager = new CommentsManager($bdd);
+		$commentsmanager = new CommentsManager($this->db);
 
 		$listcomment = $commentsmanager->getListreports();
+		
 
-		require('../VIEW/administration.php');
+		 if ($_POST['user'] == $firstadmin  && $_POST['password'] == $firstadmin['password']) {
+
+
+		 	$_SESSION['user'] = $_POST['user'];
+			$_SESSION['password'] = $_POST['password'];
+		
+			session_start();
+
+			require('src/View/administration.php');
+		 }
+		
+		else {
+
+			require('src/View/connexionerror.php');
+		}
+		
 
 	}
 
