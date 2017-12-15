@@ -74,7 +74,7 @@ class CommentsManager
 		{
 			$comments[] = new Comments($donnees);
 		}
-		
+	
 		return $comments;
 	}
 

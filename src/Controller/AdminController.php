@@ -16,13 +16,6 @@ class AdminController extends Controller
 
 {
 
-	private $db;
-
-	public function __construct() {
-
-		$this->db = App::getDatabase();
-
-	}
 
 	public function getListPosts() {
 
@@ -245,8 +238,7 @@ class AdminController extends Controller
 
 		$listcomment = $commentsmanager->getListreports();
 		
-
-		 if ($_POST['user'] == $firstadmin->getUser()  && $_POST['password'] == $firstadmin->getPassword()) {
+		 if ($_POST['user'] == $firstadmin['user']  && $_POST['password'] == $firstadmin['password']) {
 
 			session_start(); 
 			

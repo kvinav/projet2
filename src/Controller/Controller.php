@@ -42,7 +42,6 @@ class Controller
 		$listcomment = $commentsmanager->getList();
 		
 		return $postunique;
-		return $listcomment;
 
 	}
 
