@@ -66,7 +66,7 @@ class CommentsManager
 	{
 		$comments = [];
 
-		$req = $this->db->query('SELECT id, pseudo, comment, report, DATE_FORMAT(datecomment, "%d/%m/%Y à %Hh%imin") AS datecomment FROM comments                      WHERE id_post = ? ORDER BY id',
+		$req = $this->db->query('SELECT id, pseudo, comment, id_post, report, DATE_FORMAT(datecomment, "%d/%m/%Y à %Hh%imin") AS datecomment FROM comments                      WHERE id_post = ? ORDER BY id',
 		                        [$_GET['id']]
 		                        );
 	

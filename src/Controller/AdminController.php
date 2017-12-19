@@ -32,6 +32,7 @@ class AdminController extends Controller
 
 		$postunique = parent::getPost();
 		$listcomment = parent::getComments();
+		
 		require('src/View/adminpost.php');
 	}
 
@@ -44,6 +45,7 @@ class AdminController extends Controller
 	
 		$post->setId($_GET['id']);
 		$postsmanager->delete($post);
+		$posts = parent::getListPosts();
 
 		
 
@@ -63,6 +65,7 @@ class AdminController extends Controller
 		$post->setTitle($_POST['title']);
 		$post->setPost($_POST['post']);
 		$postsmanager->add($post);
+		$posts = parent::getListPosts();
 
 		require('src/View/adminlist.php');
 	}
@@ -89,6 +92,8 @@ class AdminController extends Controller
 
 		$postsmanager->update($post);
 
+		$posts = parent::getListPosts();
+
 		require('src/View/adminlist.php');
 	}
 
@@ -107,7 +112,8 @@ class AdminController extends Controller
 	public function getComment() {
 
 	
-		parent::getComment();
+		$commentunique = parent::getComment();
+		$listanswer = parent::getAnswers();
 
 		require('src/View/admincom.php');
 
@@ -136,6 +142,10 @@ class AdminController extends Controller
 		
 		$comment->setId($_GET['id']);
 		$commentsmanager->delete($comment);
+
+		$commentsmanager = new CommentsManager($this->db);
+
+		$listcomment = $commentsmanager->getListtotal();
 
 	
 	    require('src/View/comlist.php');
@@ -185,6 +195,8 @@ class AdminController extends Controller
 	public function addAnswer() {
 
 		parent::addAnswer();
+		$commentunique = parent::getComment();
+		$listanswer = parent::getAnswers();
 
 		require('src/View/admincom.php');
 

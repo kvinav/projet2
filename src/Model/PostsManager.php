@@ -77,7 +77,7 @@ class PostsManager
     {
         $this->db->exec('DELETE FROM posts WHERE id = '.$post->getId());
 
-        var_dump($post); die;
+        
     }
  
 

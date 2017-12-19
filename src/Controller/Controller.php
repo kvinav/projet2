@@ -59,6 +59,7 @@ class Controller
 		
 
 		$commentunique = $commentsmanager->getUnique($_GET['id']);
+
 		
 		return $commentunique;
 
@@ -83,8 +84,10 @@ class Controller
 		$answer->setPseudo($_POST['pseudo']);
 		$answer->setAnswer($_POST['answer']);
 		$answer->setId_comment($_GET['id']);
-
+		
 		$answersmanager->add($answer);
+
+		return $answer;
 		
 	
 	}
