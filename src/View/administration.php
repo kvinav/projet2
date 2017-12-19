@@ -1,4 +1,5 @@
-<?php include('src/View/headeradmin.php'); ?>
+<?php include('src/View/headeradmin.php');  ?>
+
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">

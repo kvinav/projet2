@@ -1,6 +1,5 @@
 <?php include('src/View/header.php'); ?>
 
-
     <!-- Page Header -->
    
     <header class="masthead" style="background-image: url('web/cleanblog/img/home.jpg')">
@@ -8,8 +7,8 @@
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
             <div class="page-heading"><br><br><br>
-              <?php foreach ($postunique as $post) { ?>
-              <h1><?php echo $post->getTitle(); ?></h1><br><br>
+
+              <h1><?php echo $postunique->getTitle(); ?></h1><br><br>
 
             </div>
           </div>
@@ -22,11 +21,11 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           
-          <p> <?php echo $post->getPost(); ?> </p>
-          <p> Publié par <em><?php echo $post->getAuthor(); ?> </em><p>
-            <p>Le <em> <?php echo $post->getDatepost(); ?></em></p><br>
+          <p> <?php echo $postunique->getPost(); ?> </p>
+          <p> Publié par <em><?php echo $postunique->getAuthor(); ?> </em><p>
+            <p>Le <em> <?php echo $postunique->getDatepost(); ?></em></p><br>
 
-      <?php } ?>
+      
         <h3 id="coms">Commentaires</h3><br>
         <?php foreach ($listcomment as $comment) { ?>
        
@@ -34,8 +33,7 @@
           <li class="list-group-item"><p><strong><?php echo $comment->getPseudo(); ?></strong> - <em>le <?php echo $comment->getDatecomment(); ?></em></p>
 
               <p><?php echo $comment->getComment(); ?></p>
-        <?php }  foreach ($postunique as $post) { ?>
-              <p> <a href="index.php?action=post&id=<?php echo $post->getId(); } ?>&idcom=<?php foreach ($listcomment as $comment) { echo $comment->getId(); ?>&report"><input type="submit" class="btn btn-danger submit" value="SIGNALER"></a>
+              <p> <a href="index.php?action=post&id=<?php echo $postunique->getId(); ?>&idcom=<?php echo $comment->getId(); ?>&report"><input type="submit" class="btn btn-danger submit" value="SIGNALER"></a>
              <a href="index.php?action=comment&id=<?php echo $comment->getId(); ?>"><input type="submit" class="btn btn-default submit" value="Voir les réponses / Répondre"></a></p>
                 <p><?php if ($comment->getReport() >= 1 ) { echo '<div class="list-group-item list-group-item-danger"><em>Ce commentaire a été signalé</em></div>'; } ?></p> </li>
                
@@ -46,7 +44,7 @@
 
            <div class="container">
             <p><strong>Laissez un commentaire</strong></p><br>
-        <form method="post" action="index.php?action=post?id=<?php foreach ($postunique as $post) { echo $post->getId(); } ?>">
+        <form method="post" action="index.php?action=post&id=<?php echo $postunique->getId(); ?>">
           <div class="col-md-6 form-line">
               <div class="form-group">
                 <label>Pseudo</label>

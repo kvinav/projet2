@@ -12,7 +12,7 @@ use Blog\Model\App;
 
 class FrontController extends Controller 
 {
-
+	protected $db;
 	
 	public function getListPosts() {
 
@@ -27,7 +27,7 @@ class FrontController extends Controller
 
 
 		$postunique = parent::getPost();
-		$listcomment = parent::getPost();
+		$listcomment = parent::getComments();
 		
 		
 		require('src/View/post.php');
@@ -37,7 +37,9 @@ class FrontController extends Controller
 	public function getComment() {
 
 	
-		parent::getComment();
+		$commentunique = parent::getComment();
+		$listanswer = parent::getAnswers();
+
 
 		require('src/View/comments.php');
 
@@ -45,17 +47,17 @@ class FrontController extends Controller
 
 	public function addComment() {
 
+		$comment = new Comments();
 		$comment->setPseudo($_POST['pseudo']);
 		$comment->setComment($_POST['comment']);
 		$comment->setId_post($_GET['id']);
 
-		$postsmanager = new PostsManager($this->db);
 		$commentsmanager = new CommentsManager($this->db);
 
 		$commentsmanager->add($comment);
-
-		$postunique = $postsmanager->getUnique($_GET['id']);
-		$listcomment = $commentsmanager->getList();
+		
+		$postunique = parent::getPost();
+		$listcomment = parent::getComments();
 
 		require('src/View/post.php');
 
@@ -86,6 +88,10 @@ class FrontController extends Controller
 
 		parent::addAnswer();
 
+		$commentunique = parent::getComment();
+		$listanswer = parent::getAnswers();
+
+		
 		require('src/View/comments.php');
 
 

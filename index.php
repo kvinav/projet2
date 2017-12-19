@@ -1,5 +1,9 @@
 <?php
 
+session_start(); 
+
+var_dump($_SESSION);
+var_dump($_POST); 
 require 'app/config.php';
 require 'vendor/autoload.php';
 
@@ -18,6 +22,7 @@ if (isset($_GET['action'])) {
 			
 			$frontcontroller = new FrontController();
 			$frontcontroller->getPost();
+			
 		}
 		elseif (isset($_GET['id']) && $_GET['id'] > 0 && isset($_GET['idcom']) && $_GET['idcom'] > 0 && isset($_GET['report'])) { 
 			$frontcontroller = new FrontController();
@@ -26,6 +31,7 @@ if (isset($_GET['action'])) {
 		elseif (isset($_GET['id']) && $_GET['id'] > 0 && isset($_POST['pseudo']) && isset($_POST['comment'])) {
 			$frontcontroller = new FrontController();
 			$frontcontroller->addComment();
+			
 		}
 		else { 
 			echo 'Erreur'; 
@@ -35,10 +41,14 @@ if (isset($_GET['action'])) {
 		if (isset($_GET['id']) && $_GET['id'] > 0) { 
 			$frontcontroller = new FrontController();
 			$frontcontroller->getComment();
+
 		}
 		elseif (isset($_GET['id']) && $_GET['id'] > 0 && isset($_POST['pseudo']) && isset($_POST['answer'])) { 
+
 			$frontcontroller = new FrontController();
 			$frontcontroller->addAnswer();
+		
+
 		}
 		elseif (isset($_GET['id']) && $_GET['id'] > 0 && isset($_GET['idrep']) && $_GET['idrep'] > 0 && isset($_GET['report'])) {
 			$frontcontroller = new FrontController();
@@ -57,10 +67,12 @@ if (isset($_GET['action'])) {
 		if (isset($_GET['id']) && $_GET['id'] > 0) { 
 			$admincontroller = new AdminController();
 			$admincontroller->getPost();
+
 		}
 		elseif (isset($_GET['id']) && $_GET['id'] > 0 && isset($_GET['deletepost'])) { 
 			$admincontroller = new AdminController();
 			$admincontroller->deletePost();
+
 		}
 		elseif (isset($_GET['id']) && $_GET['id'] > 0 && isset($_GET['idcom']) && $_GET['idcom'] > 0 && isset($_GET['deletecom'])) { //
 			$admincontroller = new AdminController();
@@ -143,16 +155,26 @@ if (isset($_GET['action'])) {
 		}
 
 	}
+	elseif ($_GET['action'] == 'connexion') {
+		$admincontroller = new AdminController();
+		$admincontroller->connexionPage();
+	}
+	elseif ($_GET['action'] == 'connexion' && isset($_SESSION['user']) && isset($_SESSION['password'])) {
+			$admincontroller = new AdminController();
+			$admincontroller->adminSession();
+	}
+	elseif ($_GET['action'] == 'dashboard') {
+		$admincontroller = new AdminController();
+		$admincontroller->adminSession();
+	}
 	elseif ($_GET['action'] == 'admin') {
 		if (isset($_POST['user']) && isset($_POST['password'])) {
 			$admincontroller = new AdminController();
 			$admincontroller->admin();
+
 		}
-		elseif (isset($_SESSION['user']) && isset($_SESSION['password'])) {
-			$admincontroller = new AdminController();
-			$admincontroller->admin();
-		}
-		elseif (!isset($_POST['user']) && !isset($_POST['password']) OR $_POST['user'] !== $firstadmin->getUser()  OR $_POST['password'] !== $firstadmin->getPassword()) {
+		
+		elseif (!isset($_POST['user']) OR !isset($_POST['password']) OR $_POST['user'] !== $firstadmin->getUser()  OR $_POST['password'] !== $firstadmin->getPassword()) {
 			$admincontroller = new AdminController();
 			$admincontroller->connexionPage();
 		}

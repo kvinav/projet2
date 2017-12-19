@@ -4,7 +4,7 @@
           <div class="col-lg-8 col-md-10 mx-auto">
             
             <p class="copyright text-muted">Copyright &copy; avignonkevin.com/projet2 2017<br>
-               <a href="index.php?action=admin">Administration du site</a><br>
+               <a href="index.php?action=connexion">Administration du site</a><br>
              <a href="index.php?action=notice">Mentions légales</a></p>
           </div>
         </div>

@@ -17,7 +17,7 @@ class CommentsManager
 	{
 		$req = $this->db->query('INSERT INTO comments (pseudo, comment, id_post, datecomment) VALUES(?, ?, ?, NOW())',
 		                        [$comment->getPseudo(), $comment->getComment(), $comment->getId_post()]);
-
+		
 
 	}
 
@@ -114,8 +114,11 @@ class CommentsManager
                                 [$id]
                                 );
      
-      $req->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Comments');
-      $commentunique = $req->fetch();
+      $donnees = $req->fetch(PDO::FETCH_ASSOC);
+
+           $commentunique = new Comments($donnees);
+    
+      
       return $commentunique;
 
     }

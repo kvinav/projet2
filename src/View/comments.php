@@ -1,13 +1,12 @@
 <?php include('src/View/header.php'); ?>
  
     <!-- Page Header -->
-    <header class="masthead" style="background-image: url('web/img/home.jpg')">
+    <header class="masthead" style="background-image: url('web/cleanblog/img/home.jpg')">
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
             <div class="site-heading"><br><br>
               <h1>Réponses au commentaire de <?php echo $commentunique->getPseudo(); ?></h1>
-              <span class="subheading">de Jean Forteroche</span>
             </div>
           </div>
         </div>
@@ -50,7 +49,7 @@
       <div class="container">
           
           
-            <br><p  id="coms"><strong>Répondre au commentaire</strong></strong></p><br>
+            <br><p><strong>Répondre au commentaire</strong></strong></p><br>
         <form method="post" action="index.php?action=comment&id=<?php echo $commentunique->getId(); ?>">
           <div class="col-md-6 form-line">
               <div class="form-group col-md-6">

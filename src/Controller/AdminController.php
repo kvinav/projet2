@@ -15,6 +15,7 @@ use Blog\Model\App;
 class AdminController extends Controller
 
 {
+	protected $db;
 
 
 	public function getListPosts() {
@@ -30,7 +31,7 @@ class AdminController extends Controller
 
 
 		$postunique = parent::getPost();
-		$listcomment = parent::getPost();
+		$listcomment = parent::getComments();
 		require('src/View/adminpost.php');
 	}
 
@@ -43,6 +44,8 @@ class AdminController extends Controller
 	
 		$post->setId($_GET['id']);
 		$postsmanager->delete($post);
+
+		
 
 		require('src/View/adminlist.php');
 	}
@@ -238,10 +241,12 @@ class AdminController extends Controller
 
 		$listcomment = $commentsmanager->getListreports();
 		
-		 if ($_POST['user'] == $firstadmin['user']  && $_POST['password'] == $firstadmin['password']) {
+		 if ($_POST['user'] == $firstadmin->getUser()  && $_POST['password'] == $firstadmin->getPassword()) {
 
-			session_start(); 
 			
+		 	$_SESSION['user'] = $firstadmin->getUser();
+			$_SESSION['password'] = $firstadmin->getPassword();
+
 
 			require('src/View/administration.php');
 		 	
@@ -253,11 +258,22 @@ class AdminController extends Controller
 
 	}
 
+	public function adminSession() {
+
+			$commentsmanager = new CommentsManager($this->db);
+
+			$listcomment = $commentsmanager->getListreports();
+
+			
+			require('src/View/administration.php');
+
+	}
+
 	public function disconnexion() {
 
 		session_destroy();
 
-		parent::getListPosts();
+		$posts = parent::getListPosts();
 
 		require('src/View/home.php');
 	}

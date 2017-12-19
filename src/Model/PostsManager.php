@@ -51,14 +51,12 @@ class PostsManager
       // post unique
     public function getUnique()
     {
-       $postunique = [];
 
     $req = $this->db->query('SELECT id, author, title, post, DATE_FORMAT(datepost, \'%d/%m/%Y à %Hh%imin\') AS datepost, DATE_FORMAT(datemodif, \'%d/%m/%Y à %Hh%imin\') AS datemodif FROM posts WHERE id = ?', [$_GET['id']]);
       
-      while ($donnees = $req->fetch(PDO::FETCH_ASSOC))
-        {
-           $postunique[] = new Posts($donnees);
-        }
+     $donnees = $req->fetch(PDO::FETCH_ASSOC);
+
+           $postunique = new Posts($donnees);
     
       return $postunique;
 
@@ -78,6 +76,8 @@ class PostsManager
   	 public function delete(Posts $post)
     {
         $this->db->exec('DELETE FROM posts WHERE id = '.$post->getId());
+
+        var_dump($post); die;
     }
  
 

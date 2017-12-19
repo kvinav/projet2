@@ -12,7 +12,7 @@ use Blog\Model\App;
 class Controller
 
 {
-	private $db;
+	protected $db;
 
 	public function __construct() {
 
@@ -35,24 +35,42 @@ class Controller
 
 		$postsmanager = new PostsManager($this->db);
 
-		$commentsmanager = new CommentsManager($this->db);
-
 
 		$postunique = $postsmanager->getUnique($_GET['id']);
-		$listcomment = $commentsmanager->getList();
+		
 		
 		return $postunique;
 
 	}
 
+
+	public function getComments() {
+
+		$commentsmanager = new CommentsManager($this->db);
+		$listcomment = $commentsmanager->getList();
+
+		return $listcomment;
+	}
+	
 	public function getComment() {
 
 		$commentsmanager = new CommentsManager($this->db);
 
-		$answersmanager = new AnswersManager($this->db);
+		
 
 		$commentunique = $commentsmanager->getUnique($_GET['id']);
+		
+		return $commentunique;
+
+	}
+
+	public function getAnswers() {
+
+		$answersmanager = new AnswersManager($this->db);
+
 		$listanswer = $answersmanager->getList();
+
+		return $listanswer;
 
 	}
 
@@ -61,16 +79,14 @@ class Controller
 		$answer = new Answers();
 
 		$answersmanager = new AnswersManager($this->db);
-		$commentsmanager = new CommentsManager($this->db);
-
+		
 		$answer->setPseudo($_POST['pseudo']);
 		$answer->setAnswer($_POST['answer']);
 		$answer->setId_comment($_GET['id']);
 
 		$answersmanager->add($answer);
-		$commentunique = $commentsmanager->getUnique($_GET['id']);
-		$listanswer = $answersmanager->getList();
-
+		
+	
 	}
 
 

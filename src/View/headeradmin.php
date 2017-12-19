@@ -43,7 +43,7 @@
   <script type="text/javascript">
   tinymce.init({
     selector: '#post',
-
+     language: 'fr_FR'
   });
   </script>
 
@@ -85,7 +85,7 @@
       <ul class="sidebar-menu">
         <li class="header">Menu</li>
         <li>
-          <a href="index.php?action=admin">
+          <a href="index.php?action=dashboard">
             <i class="fa fa-dashboard"></i> <span>Tableau de bord</span>
           </a>
         </li>

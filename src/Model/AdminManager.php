@@ -27,8 +27,11 @@ class AdminManager
        
       $req = $this->db->query('SELECT * FROM admin WHERE id = ?', [1]);
       
-      $req->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Admin');
-      $firstadmin = $req->fetch();
+       
+     $donnees = $req->fetch(PDO::FETCH_ASSOC);
+
+           $firstadmin = new Admin($donnees);
+      
       return $firstadmin;
 
     }
