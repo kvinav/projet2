@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <?php include('src/View/headeradmin.php'); ?>
+=======
+<?php include('../VIEW/headeradmin.php'); ?>
+>>>>>>> d509a76cae10964e08a7609029b60d7e11662eb4
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -15,7 +19,11 @@
       <div class="row">
         <div class="col-md-12">
   <div class="container">
+<<<<<<< HEAD
         <form method="post" action="index.php?action=updatePost&id=<?php echo $postunique->getId(); ?>">
+=======
+        <form method="post" action="../index.php?action=updatePost&id=<?php echo $postunique->getId(); ?>">
+>>>>>>> d509a76cae10964e08a7609029b60d7e11662eb4
           <div class="col-md-6 form-line">
               <div class="form-group">
                 <label for="titre">Titre</label>
@@ -44,4 +52,8 @@
     </section>
 
          
+<<<<<<< HEAD
 <?php include('src/View/footeradmin.php'); ?>
+=======
+<?php include('../VIEW/footeradmin.php'); ?>
+>>>>>>> d509a76cae10964e08a7609029b60d7e11662eb4

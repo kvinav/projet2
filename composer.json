@@ -2,9 +2,13 @@
     "require": {
         "phpunit/php-timer": "^1.0",
         "twbs/bootstrap": "^3.3",
+<<<<<<< HEAD
         "twig/twig": "^2.0",
         "tinymce/tinymce": ">= 4",
         "components/font-awesome": "^4.7"
+=======
+        "twig/twig": "^2.0"
+>>>>>>> d509a76cae10964e08a7609029b60d7e11662eb4
     },
 
     "autoload": {
@@ -14,4 +18,8 @@
     }
 
     
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> d509a76cae10964e08a7609029b60d7e11662eb4

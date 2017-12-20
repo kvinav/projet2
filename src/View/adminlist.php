@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <?php include('src/View/headeradmin.php'); ?>
+=======
+<?php include_once('../VIEW/headeradmin.php'); ?>
+>>>>>>> d509a76cae10964e08a7609029b60d7e11662eb4
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -29,7 +33,11 @@
 
               <p><?php echo substr($post->getPost(), 0, 100); ?>(...)</p>
 
+<<<<<<< HEAD
               <a href="index.php?action=postAdmin&id=<?php echo $post->getId(); ?>"><input type="submit" class="btn btn-default submit" value="Gérer"></a>
+=======
+              <a href="../index.php?action=postAdmin&id=<?php echo $post->getId(); ?>"><input type="submit" class="btn btn-default submit" value="Gérer"></a>
+>>>>>>> d509a76cae10964e08a7609029b60d7e11662eb4
            </div>  
         </div><br>
         <?php } ?>
@@ -38,4 +46,8 @@
         
     </section>
      
+<<<<<<< HEAD
 <?php include_once('src/View/footeradmin.php'); ?>
+=======
+<?php include_once('../VIEW/footeradmin.php'); ?>
+>>>>>>> d509a76cae10964e08a7609029b60d7e11662eb4
