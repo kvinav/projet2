@@ -1,8 +1,8 @@
 <?php
 
-namespace Blog\MODEL;
+namespace Blog\Model;
 
-use Blog\MODEL\Database;
+use Blog\Model\Database;
 
 class App 
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Blog\MODEL;
+namespace Blog\Model;
 
 class Answers
 {
