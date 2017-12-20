@@ -1,7 +1,7 @@
-<?php include_once('header.php'); ?>
+<?php include('src/View/header.php'); ?>
 
     <!-- Page Header -->
-    <header class="masthead" style="background-image: url('img/home.jpg')">
+    <header class="masthead" style="background-image: url('web/cleanblog/img/home.jpg')">
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
@@ -18,7 +18,7 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="row">
-            <img class="col-lg-6" src="../VIEW/img/profil.jpg" width="300" height="180">
+            <img class="col-lg-6" src="web/cleanblog/img/profil.jpg" width="300" height="180">
              <h2 class="col-lg-6"><br><br>Jean FORTEROCHE</h2>
           </div>
           <p>       Jean Forteroche est né à Manhattan, le 1er janvier 1955. Il grandit dans l’Upper West Side, étudie à New York puis dans l’état du Maine, avant de partir un an au Trinity College de Dublin, en 1974. De retour à New York, il passe plusieurs mois à travailler, sans succès, comme acteur dans des petites pièces de théâtre. En 1977, il part à Dublin pour rendre visite à des amis, puis décide de s’y installer pour de bon.</p>
@@ -34,7 +34,7 @@
     <hr>
 
     <!-- Footer -->
-     <?php include_once('footer.php'); ?>
+     <?php include_once('src/View/footer.php'); ?>
 
   </body>
 

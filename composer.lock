@@ -4,7 +4,6 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
     "content-hash": "4e868f1963e73de82159c06cd2056064",
     "packages": [
         {
@@ -43,11 +42,6 @@
             "time": "2016-10-25T10:56:23+00:00"
         },
         {
-=======
-    "content-hash": "0de192013b15bfb82a5f0bf7ad84afc0",
-    "packages": [
-        {
->>>>>>> d509a76cae10964e08a7609029b60d7e11662eb4
             "name": "phpunit/php-timer",
             "version": "1.0.9",
             "source": {
@@ -156,7 +150,6 @@
             "time": "2017-10-11T12:05:26+00:00"
         },
         {
-<<<<<<< HEAD
             "name": "tinymce/tinymce",
             "version": "4.7.4",
             "source": {
@@ -203,8 +196,6 @@
             "time": "2017-12-05T15:17:22+00:00"
         },
         {
-=======
->>>>>>> d509a76cae10964e08a7609029b60d7e11662eb4
             "name": "twbs/bootstrap",
             "version": "v3.3.7",
             "source": {

@@ -1,15 +1,8 @@
 
-<<<<<<< HEAD
  <?php include_once('src/View/header.php'); ?>
 
     <!-- Page Header -->
     <header class="masthead" style="background-image: url('web/cleanblog/img/home.jpg')">
-=======
- <?php include_once('../VIEW/header.php'); ?>
-
-    <!-- Page Header -->
-    <header class="masthead" style="background-image: url('../VIEW/img/home.jpg')">
->>>>>>> d509a76cae10964e08a7609029b60d7e11662eb4
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
@@ -34,11 +27,7 @@
           <div class="post-preview">
 
             <!-- Renvoie vers un post en fonction de l'id  -->
-<<<<<<< HEAD
             <a href="index.php?action=post&id=<?php echo $post->getId(); ?>">
-=======
-            <a href="../index.php?action=post&id=<?php echo $post->getId(); ?>">
->>>>>>> d509a76cae10964e08a7609029b60d7e11662eb4
 
               <h2 class="post-title">
                 <?php echo $post->getTitle(); ?>
@@ -48,11 +37,7 @@
               </h3>
             </a>
             <p class="post-meta">Posté par
-<<<<<<< HEAD
               <a href="index.php?action=about"><?php echo $post->getAuthor(); ?></a>
-=======
-              <a href="../index.php?action=about"><?php echo $post->getAuthor(); ?></a>
->>>>>>> d509a76cae10964e08a7609029b60d7e11662eb4
               <?php if ($post->getDatepost() == $post->getDatemodif()) { 
                    
                   ?> le  <?php echo $post->getDatepost(); ?> <?php
@@ -75,11 +60,7 @@
     <hr>
 
     <!-- Footer -->
-<<<<<<< HEAD
     <?php include_once('src/View/footer.php'); ?>
-=======
-    <?php include_once('../VIEW/footer.php'); ?>
->>>>>>> d509a76cae10964e08a7609029b60d7e11662eb4
   </body>
 
 </html>

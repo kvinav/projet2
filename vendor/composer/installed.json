@@ -231,7 +231,6 @@
         "keywords": [
             "templating"
         ]
-<<<<<<< HEAD
     },
     {
         "name": "components/font-awesome",
@@ -317,7 +316,5 @@
             "tinymce",
             "wysiwyg"
         ]
-=======
->>>>>>> d509a76cae10964e08a7609029b60d7e11662eb4
     }
 ]
