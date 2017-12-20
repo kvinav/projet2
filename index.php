@@ -1,7 +1,7 @@
 <?php
 
 session_start(); 
-var_dump($_POST);
+
 
 require 'app/config.php';
 require 'vendor/autoload.php';
@@ -38,24 +38,26 @@ if (isset($_GET['action'])) {
 		}
 	}
 	elseif ($_GET['action'] == 'comment') { 
-		if (isset($_GET['id']) && $_GET['id'] > 0) { 
-			$frontcontroller = new FrontController();
-			$frontcontroller->getComment();
+		if (isset($_GET['id']) && $_GET['id'] > 0) {
 
-		}
-		elseif (isset($_GET['id']) && $_GET['id'] > 0 && isset($_POST['pseudo']) && isset($_POST['answer'])) { 
+			if (isset($_POST['pseudo']) && isset($_POST['answer'])) { 
 
-			$frontcontroller = new FrontController();
-			$frontcontroller->addAnswer();
+				$frontcontroller = new FrontController();
+				$frontcontroller->addAnswer();
 		
 
-		}
-		elseif (isset($_GET['id']) && $_GET['id'] > 0 && isset($_GET['idrep']) && $_GET['idrep'] > 0 && isset($_GET['report'])) {
-			$frontcontroller = new FrontController();
-			$frontcontroller->reportAnswer();
+			}elseif (isset($_GET['idrep']) && $_GET['idrep'] > 0 && isset($_GET['report'])) {
+				$frontcontroller = new FrontController();
+				$frontcontroller->reportAnswer();
+				
 
-		}
-		else {
+			} else {
+				$frontcontroller = new FrontController();
+				$frontcontroller->getComment();
+				
+			}
+
+		} else {
 			echo 'Erreur';
 		}
 	}

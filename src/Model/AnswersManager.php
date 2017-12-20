@@ -33,7 +33,7 @@ class AnswersManager
 
 	public function report(Answers $answer)
 	{
-		$req = $this->db->query('UPDATE answers SET report = ? WHERE id = ?',
+		$req = $this->db->query('UPDATE answers SET report = ?,  datereport = NOW() WHERE id = ?',
 		                        [$answer->getReport() + 1, $answer->getId()]
 		                        );
 
@@ -117,9 +117,11 @@ class AnswersManager
       $req = $this->db->query('SELECT id, pseudo, answer, DATE_FORMAT(dateanswer, \'%d/%m/%Y à %Hh%imin\') AS dateanswer, report, id_comment FROM answers                      WHERE id = ?',
                                 [$_GET['idrep']]
                                 );
-     
-      $req->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Answers');
-      $answerunique = $req->fetch();
+      $donnees = $req->fetch(PDO::FETCH_ASSOC);
+
+           $answerunique = new Answers($donnees);
+    
+      
       return $answerunique;
 
     }

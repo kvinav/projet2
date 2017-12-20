@@ -107,6 +107,7 @@ class FrontController extends Controller
 		$answerunique = $answersmanager->getUnique($_GET['idrep']);
 
 		$answersmanager->report($answerunique);
+		
 		$commentunique = $commentsmanager->getUnique($_GET['id']);
 		$listanswer = $answersmanager->getList();
 

@@ -14,7 +14,7 @@
    <!-- Bootstrap core JavaScript -->
     <script src="web/cleanblog/vendor/jquery/jquery.min.js"></script>
     <script src="web/cleanblog/vendor/popper/popper.min.js"></script>
-    <script src="web/cleanblog/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <!-- Custom scripts for this template -->
     <script src="web/cleanblog/js/clean-blog.min.js"></script>
