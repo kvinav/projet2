@@ -11,7 +11,7 @@ use Blog\Controller\FrontController;
 use Blog\Controller\Controller;
 
 
-if (isset($_GET['action'])) { 
+if (!empty($_GET['action'])) { 
 	if($_GET['action'] == 'listPosts') { 
 		$frontcontroller = new FrontController();
 		$frontcontroller->getListPosts();
