@@ -14,8 +14,10 @@ class AnswersManager
   	}
 
 
-	public function add(Answers $answer)
+	public function add($answer)
 	{
+		$answer = new Answers($answer);
+
 		$req = $this->db->query('INSERT INTO answers (pseudo, answer, id_comment, dateanswer) VALUES(?, ?, ?, NOW())',
 		                        [$answer->getPseudo(), $answer->getAnswer(), $answer->getId_comment()]
 		                        );
@@ -39,8 +41,9 @@ class AnswersManager
 
 	}
 
-	public function deletereport(Answers $answer)
+	public function deletereport($answer)
 	{
+		$answer = new Answers($answer);
 		$req = $this->db->query('UPDATE answers SET report = ?, datereport = NULL WHERE id = ?',
 		                        [0, $answer->getId()]
 		                        );
@@ -134,8 +137,10 @@ class AnswersManager
 
 	}
 
-	public function delete(Answers $answer)
+	public function delete($answer)
 	{
+		$answer = new Answers($answer);
+
 		$this->db->exec('DELETE FROM answers WHERE id = '.$answer->getID());
 	}
 

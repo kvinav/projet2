@@ -23,10 +23,10 @@ class FrontController extends Controller
 
 	}
 
-	public function getPost() {
+	public function getPost($id) {
 
 
-		$postunique = parent::getPost();
+		$postunique = parent::getPost($id);
 		$listcomment = parent::getComments();
 		
 		
@@ -34,10 +34,10 @@ class FrontController extends Controller
 
 	}
 
-	public function getComment() {
+	public function getComment($id) {
 
 	
-		$commentunique = parent::getComment();
+		$commentunique = parent::getComment($id);
 		$listanswer = parent::getAnswers();
 
 
@@ -45,12 +45,8 @@ class FrontController extends Controller
 
 	}
 
-	public function addComment() {
-
-		$comment = new Comments();
-		$comment->setPseudo($_POST['pseudo']);
-		$comment->setComment($_POST['comment']);
-		$comment->setId_post($_GET['id']);
+	public function addComment($comment) {
+		
 
 		$commentsmanager = new CommentsManager($this->db);
 
@@ -63,17 +59,17 @@ class FrontController extends Controller
 
 	}
 
-	public function reportComment() {
+	public function reportComment($idcom, $id) {
 
 
 		$commentsmanager = new CommentsManager($this->db);
-		$commentunique = $commentsmanager->getUnique($_GET['idcom']);
+		$commentunique = $commentsmanager->getUnique($idcom);
 
 		$commentsmanager->report($commentunique);
 
 		$postsmanager = new PostsManager($this->db);
 
-		$postunique = $postsmanager->getUnique($_GET['id']);
+		$postunique = $postsmanager->getUnique($id);
 
 		$listcomment = $commentsmanager->getList();
 
@@ -84,11 +80,11 @@ class FrontController extends Controller
 	}
 
 	
-	public function addAnswer() {
+	public function addAnswer($answer, $id) {
 
-		parent::addAnswer();
+		parent::addAnswer($answer, $id);
 
-		$commentunique = parent::getComment();
+		$commentunique = parent::getComment($id);
 		$listanswer = parent::getAnswers();
 
 		
@@ -98,17 +94,17 @@ class FrontController extends Controller
 	}
 
  
-	public function reportAnswer() {
+	public function reportAnswer($idrep, $id) {
 
 		$commentsmanager = new CommentsManager($this->db);
 
 		$answersmanager = new AnswersManager($this->db);
 
-		$answerunique = $answersmanager->getUnique($_GET['idrep']);
+		$answerunique = $answersmanager->getUnique($idrep);
 
 		$answersmanager->report($answerunique);
 		
-		$commentunique = $commentsmanager->getUnique($_GET['id']);
+		$commentunique = $commentsmanager->getUnique($id);
 		$listanswer = $answersmanager->getList();
 
 		require('src/View/comments.php');

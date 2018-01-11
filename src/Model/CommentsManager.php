@@ -13,8 +13,10 @@ class CommentsManager
     $this->db = $db;
   	}
 
-	public function add(Comments $comment)
+	public function add($comment)
 	{
+		$comment = new Comments($comment);
+		
 		$req = $this->db->query('INSERT INTO comments (pseudo, comment, id_post, datecomment) VALUES(?, ?, ?, NOW())',
 		                        [$comment->getPseudo(), $comment->getComment(), $comment->getId_post()]);
 		
@@ -36,8 +38,10 @@ class CommentsManager
 		                        );
 
 	}
-	public function deletereport(Comments $comment)
+	public function deletereport($comment)
 	{
+		$comment = new Comments($comment);
+
 		$req = $this->db->query('UPDATE comments SET report = ?, datereport = NULL WHERE id = ?',
 		                        [0, $comment->getId()]
 		                        );
@@ -131,8 +135,10 @@ class CommentsManager
 
 	}
 
-	public function delete(Comments $comment)
+	public function delete($comment)
 	{
+		$comment = new Comments($comment);
+
 		$this->db->exec('DELETE FROM comments WHERE id = '.$comment->getID());
 	}
 

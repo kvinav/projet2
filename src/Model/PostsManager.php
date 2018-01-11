@@ -15,11 +15,13 @@ class PostsManager
 
 	//Ajouter post
 
-	public function add(Posts $posts)
+	public function add($post)
 	{
+        $post = new Posts($post);
+
 
 		$req = $this->db->query('INSERT INTO posts (author, title, post, datepost) VALUES(\'Jean Forteroche\', ?, ?, NOW())', 
-		                          [$posts->getTitle(), $posts->getPost()] 
+		                          [$post->getTitle(), $post->getPost()] 
 		                        );
 
 	}
@@ -63,18 +65,24 @@ class PostsManager
     }
    	//Update post
 
-  	 public function update(Posts $posts)
+  	 public function update($post)
     {
-        $req = $this->db->query('UPDATE posts SET title = ?, post = ?, datemodif = NOW() WHERE id = '.$posts->getId(), 
-                                [$posts->getTitle(), $posts->getPost()]
+        $post = new Posts($post);
+        
+        $req = $this->db->query('UPDATE posts SET title = ?, post = ?, datemodif = NOW() WHERE id = '.$post->getId(), 
+                                [$post->getTitle(), $post->getPost()]
                                 );
   
     }
 
     //Suppression d'un post
 
-  	 public function delete(Posts $post)
+  	 public function delete($post)
+
     {
+
+        $post = new Posts($post);
+
         $this->db->exec('DELETE FROM posts WHERE id = '.$post->getId());
 
         

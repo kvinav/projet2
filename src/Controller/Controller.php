@@ -31,12 +31,12 @@ class Controller
 
 	}
 
-	public function getPost() {
+	public function getPost($id) {
 
 		$postsmanager = new PostsManager($this->db);
 
 
-		$postunique = $postsmanager->getUnique($_GET['id']);
+		$postunique = $postsmanager->getUnique($id);
 		
 		
 		return $postunique;
@@ -52,13 +52,13 @@ class Controller
 		return $listcomment;
 	}
 	
-	public function getComment() {
+	public function getComment($id) {
 
 		$commentsmanager = new CommentsManager($this->db);
 
 		
 
-		$commentunique = $commentsmanager->getUnique($_GET['id']);
+		$commentunique = $commentsmanager->getUnique($id);
 
 		
 		return $commentunique;
@@ -75,16 +75,10 @@ class Controller
 
 	}
 
-	public function addAnswer() {
-
-		$answer = new Answers();
+	public function addAnswer($answer, $id) {
 
 		$answersmanager = new AnswersManager($this->db);
-		
-		$answer->setPseudo($_POST['pseudo']);
-		$answer->setAnswer($_POST['answer']);
-		$answer->setId_comment($_GET['id']);
-		
+
 		$answersmanager->add($answer);
 
 		return $answer;

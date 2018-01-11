@@ -6,12 +6,14 @@ session_start();
 require 'app/config.php';
 require 'vendor/autoload.php';
 
+require_once("vendor/autoload.php");
+
 use Blog\Controller\AdminController;
 use Blog\Controller\FrontController;
 use Blog\Controller\Controller;
 
 
-if (isset($_GET['action'])) { 
+if (!empty($_GET['action'])) { 
 	if($_GET['action'] == 'listPosts') { 
 		$frontcontroller = new FrontController();
 		$frontcontroller->getListPosts();
@@ -20,15 +22,27 @@ if (isset($_GET['action'])) {
 		if (isset($_GET['id']) && $_GET['id'] > 0) { 
 
 			if (isset($_GET['idcom']) && $_GET['idcom'] > 0 && isset($_GET['report'])) { 
+
+					$idcom = $_GET['idcom'];
+					$id = $_GET['id'];
 					$frontcontroller = new FrontController();
-					$frontcontroller->reportComment();
+					$frontcontroller->reportComment($idcom, $id);
 			} elseif (isset($_POST['pseudo']) && isset($_POST['comment'])) {
-					$frontcontroller = new FrontController();
-					$frontcontroller->addComment();
-			} else {
+
+					$comment = [
+						'pseudo' => $_POST['pseudo'],
+						'comment' => $_POST['comment'],
+						'id_post' => $_GET['id'],
+
+					];
 
 					$frontcontroller = new FrontController();
-					$frontcontroller->getPost();
+					$frontcontroller->addComment($comment);
+
+			} else {
+					$id = $_GET['id'];
+					$frontcontroller = new FrontController();
+					$frontcontroller->getPost($id);
 			
 			}
 				
@@ -42,18 +56,29 @@ if (isset($_GET['action'])) {
 
 			if (isset($_POST['pseudo']) && isset($_POST['answer'])) { 
 
+
+				$answer = [
+					'pseudo' => $_POST['pseudo'],
+					'answer' => $_POST['answer'],
+					'id_comment' => $_GET['id'],
+
+				];
+				$id = $_GET['id'];
 				$frontcontroller = new FrontController();
-				$frontcontroller->addAnswer();
+				$frontcontroller->addAnswer($answer, $id);
 		
 
 			}elseif (isset($_GET['idrep']) && $_GET['idrep'] > 0 && isset($_GET['report'])) {
+				$idrep = $_GET['idrep'];
+				$id = $_GET['id'];
 				$frontcontroller = new FrontController();
-				$frontcontroller->reportAnswer();
+				$frontcontroller->reportAnswer($idrep, $id);
 				
 
 			} else {
+				$id = $_GET['id'];
 				$frontcontroller = new FrontController();
-				$frontcontroller->getComment();
+				$frontcontroller->getComment($id);
 				
 			}
 
@@ -69,15 +94,27 @@ if (isset($_GET['action'])) {
 		if (isset($_GET['id']) && $_GET['id'] > 0) { 
 
 			if (isset($_GET['deletepost'])) { 
+				$post = [
+					'id' => $_GET['id'],
+				];
 				$admincontroller = new AdminController();
-				$admincontroller->deletePost();
+				$admincontroller->deletePost($post);
 
-			} elseif (isset($_GET['idcom']) && $_GET['idcom'] > 0 && isset($_GET['deletecom'])) { //
+			} elseif (isset($_GET['idcom']) && $_GET['idcom'] > 0 && isset($_GET['deletecom'])) { 
+
+				$comment = [
+					'id' => $_GET['idcom'],
+				];
+				$id = $_GET['id'];
+
 				$admincontroller = new AdminController();
-				$admincontroller->deleteComment();
+				$admincontroller->deleteComment($comment, $id);
+				
 			} else {
+				$id = $_GET['id'];
 				$admincontroller = new AdminController();
-				$admincontroller->getPost();
+				$admincontroller->getPost($id);
+				
 
 			}
 		} else {
@@ -86,13 +123,23 @@ if (isset($_GET['action'])) {
 	}
 	elseif ($_GET['action'] == 'listComments') {
 		if (isset($_GET['id']) && $_GET['id'] > 0 && isset($_GET['deletereport'])) {
+
+			$comment = [
+				'id' => $_GET['id'],
+
+			];
 			$admincontroller = new AdminController();
-			$admincontroller->deleteReport();
+			$admincontroller->deleteReport($comment);
 
 		}
 		elseif (isset($_GET['id']) && $_GET['id'] > 0  && isset($_GET['delete'])) {
+
+			$comment = [
+				'id' => $_GET['id'],
+
+			];
 			$admincontroller = new AdminController();
-			$admincontroller->deleteCommentList();
+			$admincontroller->deleteCommentList($comment);
 		}
 		elseif (isset($_GET['get']) == 'list') {
 			$admincontroller = new AdminController();
@@ -107,28 +154,58 @@ if (isset($_GET['action'])) {
 		 if (isset($_GET['id']) && $_GET['id'] > 0) { 
             
             if (isset($_POST['pseudo']) && isset($_POST['answer'])) { 
+
+				$answer = [
+					'pseudo' => $_POST['pseudo'],
+					'answer' => $_POST['answer'],
+					'id_comment' => $_GET['id'],
+
+				];
+				$id = $_GET['id'];
                 $admincontroller = new AdminController();
-                $admincontroller->addAnswer();
+                $admincontroller->addAnswer($answer, $id);
             }
 
             elseif (isset($_GET['idrep']) && $_GET['idrep'] > 0 && isset($_GET['deleteanswer'])) {
+
+
+				$answer = [
+					'id' => $_GET['idrep'],
+
+				];
+
+				$id = $_GET['id']; 
                 $admincontroller = new AdminController();
-                $admincontroller->deleteAnswer();
+                $admincontroller->deleteAnswer($answer, $id);
             }
 
             elseif (isset($_GET['idrep']) && $_GET['idrep'] > 0 && isset($_GET['deletereport'])) {
+
+            	$answer = [
+					'id' => $_GET['idrep'],
+
+				];
+
+				$id = $_GET['id'];
+
                 $admincontroller = new AdminController();
-                $admincontroller->deleteReportAnswer();
+                $admincontroller->deleteReportAnswer($answer, $id);
             }
 
             elseif (isset($_GET['deletecom'])) {
+
+            	$comment = [
+					'id' => $_GET['id'],
+
+				];
                 $admincontroller = new AdminController();
-                $admincontroller->deleteCommentUnique();
+                $admincontroller->deleteCommentUnique($comment);
             }
 
             else {
+            	$id = $_GET['id'];
                 $admincontroller = new AdminController();
-                $admincontroller->getComment();
+                $admincontroller->getComment($id);
             }
         
         }
@@ -140,8 +217,13 @@ if (isset($_GET['action'])) {
 	
 	elseif ($_GET['action'] == 'addPost') {
 		if  (isset($_POST['title']) && isset($_POST['post'])) {
+
+				$post = [
+					'title' => $_POST['title'],
+					'post' => $_POST['post'],
+				];
 				$admincontroller = new AdminController();
-				$admincontroller->addPost();
+				$admincontroller->addPost($post);
 		}
 		elseif (!isset($_POST['title']) && !isset($_POST['post'])) {
 				$admincontroller = new AdminController();
@@ -154,12 +236,22 @@ if (isset($_GET['action'])) {
 	
 	elseif ($_GET['action'] == 'updatePost') {
 		if  (isset($_POST['title']) && isset($_POST['post'])) {
+
+
+				$post = [
+					'id' => $_GET['id'],
+					'title' => $_POST['title'],
+					'post' => $_POST['post'],
+
+				];
+		
 				$admincontroller = new AdminController();
-				$admincontroller->updatePost();
+				$admincontroller->updatePost($post);
 		}
 		elseif (!isset($_POST['title']) && !isset($_POST['post'])) {
+				$id = $_GET['id'];
 				$admincontroller = new AdminController();
-				$admincontroller->getUpdatePost();
+				$admincontroller->getUpdatePost($id);
 		}
 		else {
 			echo 'Erreur';
@@ -176,8 +268,13 @@ if (isset($_GET['action'])) {
 	}
 	elseif ($_GET['action'] == 'dashboard') {
 		if (isset($_GET['id']) && isset($_GET['deletereport'])) {
+
+			$comment = [
+				'id' => $_GET['id'],
+
+			];
 			$admincontroller = new AdminController();
-			$admincontroller->deleteReportAdmin();
+			$admincontroller->deleteReportAdmin($comment);
 
 		} else {
 		$admincontroller = new AdminController();

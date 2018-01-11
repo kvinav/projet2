@@ -27,23 +27,20 @@ class AdminController extends Controller
 
 	}
 
-	public function getPost() {
+	public function getPost($id) {
 
 
-		$postunique = parent::getPost();
+		$postunique = parent::getPost($id);
 		$listcomment = parent::getComments();
 		
 		require('src/View/adminpost.php');
 	}
 
 
-	public function deletePost() {
-
-		$post = new Posts();
+	public function deletePost($post) {
 
 		$postsmanager = new PostsManager($this->db);
-	
-		$post->setId($_GET['id']);
+		
 		$postsmanager->delete($post);
 		$posts = parent::getListPosts();
 
@@ -57,13 +54,10 @@ class AdminController extends Controller
 		require('src/View/addpost.php');
 	}
 
-	public function addPost() {
+	public function addPost($post) {
 
-		$post = new Posts();
 		$postsmanager = new PostsManager($this->db);
-
-		$post->setTitle($_POST['title']);
-		$post->setPost($_POST['post']);
+		
 		$postsmanager->add($post);
 		$posts = parent::getListPosts();
 
@@ -71,24 +65,20 @@ class AdminController extends Controller
 	}
 
 
-	public function getUpdatePost() {
+	public function getUpdatePost($id) {
 
 		$postsmanager = new PostsManager($this->db);
 
 
-		$postunique = $postsmanager->getUnique($_GET['id']);
+		$postunique = $postsmanager->getUnique($id);
 
 		require('src/View/updatepost.php');
 	}
 
-	public function updatePost() {
+	public function updatePost($post) {
 
-		$post = new Posts();
+		
 		$postsmanager = new PostsManager($this->db);
-
-		$post->setId($_GET['id']);
-		$post->setTitle($_POST['title']);
-		$post->setPost($_POST['post']);
 
 		$postsmanager->update($post);
 
@@ -109,38 +99,34 @@ class AdminController extends Controller
 
 	}
 
-	public function getComment() {
+	public function getComment($id) {
 
 	
-		$commentunique = parent::getComment();
+		$commentunique = parent::getComment($id);
 		$listanswer = parent::getAnswers();
 
 		require('src/View/admincom.php');
 
 	}
 
-	public function deleteComment() {
-
-		$comment = new Comments();
+	public function deleteComment($comment, $id) {
 
 		$commentsmanager = new CommentsManager($this->db);
 		$postsmanager = new PostsManager($this->db);
 
-		$postunique = $postsmanager->getUnique($_GET['id']);
-		$listcomment = $commentsmanager->getListadmin();
-		$comment->setId($_GET['idcom']);
+		$postunique = $postsmanager->getUnique($id);
+		
+
 		$commentsmanager->delete($comment);
+		$listcomment = $commentsmanager->getListadmin();
 		require('src/View/adminpost.php');
 	}
 
-	public function deleteCommentUnique() {
+	public function deleteCommentUnique($comment) {
 
-		$comment = new Comments();
 
 		$commentsmanager = new CommentsManager($this->db);
 
-		
-		$comment->setId($_GET['id']);
 		$commentsmanager->delete($comment);
 
 		$commentsmanager = new CommentsManager($this->db);
@@ -151,25 +137,22 @@ class AdminController extends Controller
 	    require('src/View/comlist.php');
 	}
 
-	public function deleteCommentList() {
+	public function deleteCommentList($comment) {
 
-
-		$comment = new Comments();
 
 		$commentsmanager = new CommentsManager($this->db);
-		$comment->setId($_GET['id']);
+	
 		$commentsmanager->delete($comment);
 		$listcomment = $commentsmanager->getListtotal();
 
 		require('src/View/comlist.php');
 	}
 
-	public function deleteReport() {
+	public function deleteReport($comment) {
 
-		$comment = new Comments();
 
 		$commentsmanager = new CommentsManager($this->db);
-		$comment->setId($_GET['id']);
+		
 		$commentsmanager->deletereport($comment);
 		$listcomment = $commentsmanager->getListtotal();
 
@@ -177,12 +160,11 @@ class AdminController extends Controller
 
 	}
 
-	public function deleteReportAdmin() {
+	public function deleteReportAdmin($comment) {
 
-		$comment = new Comments();
-
+		
 		$commentsmanager = new CommentsManager($this->db);
-		$comment->setId($_GET['id']);
+
 		$commentsmanager->deletereport($comment);
 		$listcomment = $commentsmanager->getListreports();
 
@@ -192,10 +174,10 @@ class AdminController extends Controller
 
 
 
-	public function addAnswer() {
+	public function addAnswer($answer, $id) {
 
-		parent::addAnswer();
-		$commentunique = parent::getComment();
+		parent::addAnswer($answer, $id);
+		$commentunique = parent::getComment($id);
 		$listanswer = parent::getAnswers();
 
 		require('src/View/admincom.php');
@@ -203,34 +185,30 @@ class AdminController extends Controller
 
 	}
 
-	public function deleteAnswer() {
+	public function deleteAnswer($answer, $id) {
 
 
 		$commentsmanager = new CommentsManager($this->db);
-		$answer = new Answers();
 
 		$answersmanager = new AnswersManager($this->db);
 
-		$commentunique = $commentsmanager->getUnique($_GET['id']);
-		$listanswer = $answersmanager->getList();
+		$commentunique = $commentsmanager->getUnique($id);
+		
 
-		$answer->setId($_GET['idrep']);
 		$answersmanager->delete($answer);
-
+		$listanswer = $answersmanager->getList();
 		require('src/View/admincom.php');
 
 	}
 
-	public function deleteReportAnswer() { 
+	public function deleteReportAnswer($answer, $id) { 
 
 		$commentsmanager = new CommentsManager($this->db);
-		$answer = new Answers();
 
 		$answersmanager = new AnswersManager($this->db);
 
-		$answer->setId($_GET['idrep']);
 		$answersmanager->deletereport($answer);
-		$commentunique = $commentsmanager->getUnique($_GET['id']);
+		$commentunique = $commentsmanager->getUnique($id);
     	$listanswer = $answersmanager->getList();
 
 		require('src/View/admincom.php');
