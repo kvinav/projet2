@@ -45,14 +45,14 @@ class FrontController extends Controller
 
 	}
 
-	public function addComment($comment) {
+	public function addComment($comment, $id) {
 		
 
 		$commentsmanager = new CommentsManager($this->db);
 
 		$commentsmanager->add($comment);
 		
-		$postunique = parent::getPost();
+		$postunique = parent::getPost($id);
 		$listcomment = parent::getComments();
 
 		require('src/View/post.php');

@@ -35,9 +35,9 @@ if (!empty($_GET['action'])) {
 						'id_post' => $_GET['id'],
 
 					];
-
+					$id = $_GET['id'];
 					$frontcontroller = new FrontController();
-					$frontcontroller->addComment($comment);
+					$frontcontroller->addComment($comment, $id);
 
 			} else {
 					$id = $_GET['id'];
