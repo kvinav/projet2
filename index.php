@@ -30,8 +30,8 @@ if (!empty($_GET['action'])) {
 			} elseif (isset($_POST['pseudo']) && isset($_POST['comment'])) {
 
 					$comment = [
-						'pseudo' => $_POST['pseudo'],
-						'comment' => $_POST['comment'],
+						'pseudo' => htmlspecialchars($_POST['pseudo']),
+						'comment' => htmlspecialchars($_POST['comment']),
 						'id_post' => $_GET['id'],
 
 					];
@@ -58,8 +58,8 @@ if (!empty($_GET['action'])) {
 
 
 				$answer = [
-					'pseudo' => $_POST['pseudo'],
-					'answer' => $_POST['answer'],
+					'pseudo' => htmlspecialchars($_POST['pseudo']),
+					'answer' => htmlspecialchars($_POST['answer']),
 					'id_comment' => $_GET['id'],
 
 				];
@@ -156,8 +156,8 @@ if (!empty($_GET['action'])) {
             if (isset($_POST['pseudo']) && isset($_POST['answer'])) { 
 
 				$answer = [
-					'pseudo' => $_POST['pseudo'],
-					'answer' => $_POST['answer'],
+					'pseudo' => htmlspecialchars($_POST['pseudo']),
+					'answer' => htmlspecialchars($_POST['answer']),
 					'id_comment' => $_GET['id'],
 
 				];
@@ -219,8 +219,8 @@ if (!empty($_GET['action'])) {
 		if  (isset($_POST['title']) && isset($_POST['post'])) {
 
 				$post = [
-					'title' => $_POST['title'],
-					'post' => $_POST['post'],
+					'title' => htmlspecialchars($_POST['title']),
+					'post' => htmlspecialchars($_POST['post']),
 				];
 				$admincontroller = new AdminController();
 				$admincontroller->addPost($post);
@@ -240,8 +240,8 @@ if (!empty($_GET['action'])) {
 
 				$post = [
 					'id' => $_GET['id'],
-					'title' => $_POST['title'],
-					'post' => $_POST['post'],
+					'title' => htmlspecialchars($_POST['title']),
+					'post' => htmlspecialchars($_POST['post']),
 
 				];
 		
