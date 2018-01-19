@@ -230,12 +230,11 @@ class AdminController extends Controller
 		$commentsmanager = new CommentsManager($this->db);
 
 		$listcomment = $commentsmanager->getListreports();
-		
-		 if ($_POST['user'] == $firstadmin->getUser()  && $_POST['password'] == $firstadmin->getPassword()) {
 
-			
-		 	$_SESSION['user'] = $firstadmin->getUser();
-			$_SESSION['password'] = $firstadmin->getPassword();
+		$password = $_POST['password'];
+		$hashpassword = $firstadmin->getPassword();
+		
+		 if ($_POST['user'] == $firstadmin->getUser() && password_verify($password, $hashpassword)) {
 
 
 			require('src/View/administration.php');
