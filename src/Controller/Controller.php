@@ -9,7 +9,7 @@ use Blog\Model\Answers;
 use Blog\Model\App;
 
 
-class Controller
+abstract class Controller
 
 {
 	protected $db;
