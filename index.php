@@ -220,7 +220,7 @@ if (!empty($_GET['action'])) {
 
 				$post = [
 					'title' => htmlspecialchars($_POST['title']),
-					'post' => htmlspecialchars($_POST['post']),
+					'post' => $_POST['post'],
 				];
 				$admincontroller = new AdminController();
 				$admincontroller->addPost($post);
@@ -241,7 +241,7 @@ if (!empty($_GET['action'])) {
 				$post = [
 					'id' => $_GET['id'],
 					'title' => htmlspecialchars($_POST['title']),
-					'post' => htmlspecialchars($_POST['post']),
+					'post' => $_POST['post'],
 
 				];
 		
@@ -279,6 +279,7 @@ if (!empty($_GET['action'])) {
 		} else {
 		$admincontroller = new AdminController();
 		$admincontroller->adminSession();
+		
 		}
 	}
 	elseif ($_GET['action'] == 'admin') {
